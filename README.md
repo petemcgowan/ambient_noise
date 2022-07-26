@@ -6,7 +6,7 @@ TODO More info to follow!
 
 ## Ambient Architecture
 
-<img src="docs/images/ambient-power-stack.png" width="100%" />
+<img src="docs/images/ambient-power-stack.png" width="50%" />
 
 ## Main app components
 
