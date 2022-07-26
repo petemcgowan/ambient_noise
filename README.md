@@ -13,14 +13,11 @@ TODO More info to follow!
 Ambient Power Off, Noise type 1
 <img src="docs/images/Ambient Power Off 1.png" width="50%" />
 
-Ambient Power Off, Noise type 3
-<img src="docs/images/Ambient Power Off Sky.png" width="50%" />
-
 Ambient Power On, Noise type 1
 <img src="docs/images/Ambient Power On 1.png" width="50%" />
 
-Ambient Power On, Noise type 2
-<img src="docs/images/Ambient Power On Boats.png" width="50%" />
+Ambient Power Off, Noise type 3
+<img src="docs/images/Ambient Power Off Sky.png" width="50%" />
 
 Ambient Power On, Noise type 3
 <img src="docs/images/Ambient Power On Sky.png" width="50%" />
