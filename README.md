@@ -10,23 +10,20 @@ TODO More info to follow!
 
 ## Main app components
 
-1. Ambient Power Off, Noise type 1
-   <img src="docs/images/Ambient Power Off 1.png" width="50%" />
+Ambient Power Off, Noise type 1
+<img src="docs/images/Ambient Power Off 1.png" width="50%" />
 
-2. Ambient Power Off, Noise type 2
-   <img src="docs/images/Ambient Power Off Boats.png" width="50%" />
+Ambient Power Off, Noise type 3
+<img src="docs/images/Ambient Power Off Sky.png" width="50%" />
 
-3. Ambient Power Off, Noise type 3
-   <img src="docs/images/Ambient Power Off Sky.png" width="50%" />
+Ambient Power On, Noise type 1
+<img src="docs/images/Ambient Power On 1.png" width="50%" />
 
-4. Ambient Power On, Noise type 1
-   <img src="docs/images/Ambient Power On 1.png" width="50%" />
+Ambient Power On, Noise type 2
+<img src="docs/images/Ambient Power On Boats.png" width="50%" />
 
-5. Ambient Power On, Noise type 2
-   <img src="docs/images/Ambient Power On Boats.png" width="50%" />
-
-6. Ambient Power On, Noise type 3
-   <img src="docs/images/Ambient Power On Sky.png" width="50%" />
+Ambient Power On, Noise type 3
+<img src="docs/images/Ambient Power On Sky.png" width="50%" />
 
 ## How the app is started
 
