@@ -1,5 +1,12 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {TouchableOpacity, Image, FlatList} from 'react-native';
+import {
+  TouchableOpacity,
+  Image,
+  Modal,
+  Pressable,
+  Alert,
+  FlatList,
+} from 'react-native';
 import {SafeAreaView, View, Text, StyleSheet, Dimensions} from 'react-native';
 
 import TrackPlayer, {
@@ -12,16 +19,20 @@ import TrackPlayer, {
   useTrackPlayerEvents,
 } from 'react-native-track-player';
 
+import RNBackdrop from './RNBackdrop';
+
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Slider from '@react-native-community/slider';
-import songs from '../model/data';
+import sounds from '../model/data';
 import {Animated} from 'react-native';
+import {TimePicker} from 'react-native-simple-time-picker';
 
 const {width, height} = Dimensions.get('window');
 
 const setupPlayer = async () => {
   await TrackPlayer.setupPlayer();
+  await TrackPlayer.setVolume(0.35);
   // TODO: Apparently this isn't working but will work in future version of React Native Track Player
   await TrackPlayer.updateOptions({
     capabilities: [
@@ -32,14 +43,14 @@ const setupPlayer = async () => {
       Capability.Stop,
     ],
   });
-  await TrackPlayer.add(songs);
+  await TrackPlayer.add(sounds);
 };
 
 const togglePlayback = async playbackState => {
   const currentTrack = await TrackPlayer.getCurrentTrack();
 
   if (currentTrack !== null) {
-    if (playbackState == State.Paused) {
+    if (playbackState === State.Paused) {
       await TrackPlayer.play();
     } else {
       await TrackPlayer.pause();
@@ -47,59 +58,66 @@ const togglePlayback = async playbackState => {
   }
 };
 
+// const useAudio = url => {
+//   const [audio] = useState(new Audio(url));
+//   const [playing, setPlaying] = useState(false);
+
+//   const toggle = () => setPlaying(!playing);
+
+//   useEffect(() => {
+//     playing ? audio.play() : audio.pause();
+//   }, [playing]);
+
+//   useEffect(() => {
+//     audio.addEventListener('ended', () => setPlaying(false));
+//     return () => {
+//       audio.removeEventListener('ended', () => setPlaying(false));
+//     };
+//   }, []);
+
+//   return [playing, toggle];
+// };
 const MusicPlayer = () => {
+  // const audio = new Audio(
+  //   'https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3',
+  // );
   const playbackState = usePlaybackState();
   const progress = useProgress();
 
-  const [trackArtwork, setTrackArtwork] = useState();
-  const [trackArtist, setTrackArtist] = useState();
+  const [trackImage, setTrackImage] = useState();
   const [trackTitle, setTrackTitle] = useState();
+  const [modalVisible, setModalVisible] = useState(false);
 
   const scrollX = useRef(new Animated.Value(0)).current;
   const [songIndex, setSongIndex] = useState(0);
   const [repeatMode, setRepeatMode] = useState('off');
 
-  const songSlider = useRef(null);
+  const soundsSlider = useRef(null);
+  const [hours, setHours] = React.useState(0);
+  const [minutes, setMinutes] = React.useState(0);
+
+  const [value, setValue] = React.useState(0);
+  // const [playing, toggle] = useAudio(url);
+
+  const handleChange = (value: {hours: number, minutes: number}) => {
+    setHours(value.hours);
+    setMinutes(value.minutes);
+    console.log(
+      'value.hours' + value.hours + ', value.minutes:' + value.minutes,
+    );
+  };
 
   useTrackPlayerEvents([Event.PlaybackTrackChanged], async event => {
     if (event.type === Event.PlaybackTrackChanged && event.nextTrack !== null) {
       const track = await TrackPlayer.getTrack(event.nextTrack);
-      const {title, artwork, artist} = track;
+      const {title, image} = track;
       setTrackTitle(title);
-      setTrackArtwork(artwork);
-      setTrackArtist(artist);
+      setTrackImage(image);
     }
   });
 
   Ionicons.loadFont();
   MaterialCommunityIcons.loadFont();
-
-  const repeatIcon = () => {
-    if (repeatMode == 'off') {
-      return 'repeat-off';
-    }
-    if (repeatMode == 'track') {
-      return 'repeat-once';
-    }
-    if (repeatMode == 'repeat') {
-      return 'repeat';
-    }
-  };
-
-  const changeRepeatMode = () => {
-    if (repeatMode == 'off') {
-      TrackPlayer.setRepeatMode(RepeatMode.Track);
-      setRepeatMode('track');
-    }
-    if (repeatMode == 'track') {
-      TrackPlayer.setRepeatMode(RepeatMode.Queue);
-      setRepeatMode('repeat');
-    }
-    if (repeatMode == 'repeat') {
-      TrackPlayer.setRepeatMode(RepeatMode.Off);
-      setRepeatMode('off');
-    }
-  };
 
   const skipTo = async trackId => {
     await TrackPlayer.skip(trackId);
@@ -116,23 +134,21 @@ const MusicPlayer = () => {
     return () => {
       scrollX.removeAllListeners();
     };
-  }, []);
+  }, [scrollX]);
 
-  const skipToNext = () => {
-    songSlider.current.scrollToOffset({
-      offset: (songIndex + 1) * width,
-    });
-  };
+  // const skipToNext = () => {
+  //   soundsSlider.current.scrollToOffset({
+  //     offset: (songIndex + 1) * width,
+  //   });
+  // };
 
-  const skipToPrevious = () => {
-    // Note that without getNode added, it's undefined
-    // songSlider.current.getNode().scrollToOffset({
-    songSlider.current.scrollToOffset({
-      offset: (songIndex - 1) * width,
-    });
-  };
+  // const skipToPrevious = () => {
+  //   soundsSlider.current.scrollToOffset({
+  //     offset: (songIndex - 1) * width,
+  //   });
+  // };
 
-  const renderSongs = ({index, item}) => {
+  const renderSounds = ({index, item}) => {
     return (
       <Animated.View
         style={{
@@ -140,8 +156,8 @@ const MusicPlayer = () => {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <View style={styles.artworkWrapper}>
-          <Image source={trackArtwork} style={styles.artworkImg} />
+        <View style={styles.imageWrapper}>
+          <Image source={trackImage} style={styles.image} />
         </View>
       </Animated.View>
     );
@@ -152,8 +168,8 @@ const MusicPlayer = () => {
       flex: 1,
       backgroundColor:
         playbackState === State.Playing
-          ? 'rgba(34, 40, 48, 1)'
-          : 'rgba(151, 65, 23, 1)',
+          ? 'rgba(151, 65, 23, 1)'
+          : 'rgba(34, 40, 48, 1)',
     },
   });
 
@@ -162,9 +178,9 @@ const MusicPlayer = () => {
       <View style={styles.mainContainer}>
         <View style={{width: width}}>
           <Animated.FlatList
-            ref={songSlider}
-            data={songs}
-            renderItem={renderSongs}
+            ref={soundsSlider}
+            data={sounds}
+            renderItem={renderSounds}
             keyExtractor={item => item.id}
             horizontal
             pagingEnabled
@@ -182,57 +198,58 @@ const MusicPlayer = () => {
             )}
           />
         </View>
-        {/* <View>
-          <Text style={styles.title}>{trackTitle}</Text>
-          <Text style={styles.artist}>{trackArtist}</Text>
-        </View> */}
 
         <View style={styles.powerControls}>
-          {/* <TouchableOpacity onPress={skipToPrevious}>
-            <Ionicons
-              name="play-skip-back-outline"
-              size={35}
-              color="#FFD369"
-              style={{marginTop: 25}}
-            />
-          </TouchableOpacity> */}
           <TouchableOpacity onPress={() => togglePlayback(playbackState)}>
             <Ionicons
-              name={playbackState === State.Playing ? 'power' : 'bulb-sharp'}
+              name={playbackState === State.Playing ? 'power' : 'power'}
               size={140}
               style={{marginTop: 25}}
-              color={playbackState === State.Playing ? '#FFD369' : '#222831'}
+              color={
+                playbackState === State.Playing
+                  ? '#FFD369'
+                  : 'rgba(0, 255, 0, 0.65)'
+              }
             />
           </TouchableOpacity>
-          {/* <TouchableOpacity onPress={skipToNext}>
-            <Ionicons
-              name="play-skip-forward-outline"
-              size={35}
-              color="#FFD369"
-              style={{marginTop: 25}}
-            />
-          </TouchableOpacity> */}
         </View>
       </View>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+          setModalVisible(!modalVisible);
+        }}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Countdown Timer (on)</Text>
+            <TimePicker
+              textColor={'black'}
+              value={{hours, minutes}}
+              onChange={handleChange}
+            />
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(false)}>
+              <Text style={styles.textStyle}>Back</Text>
+            </Pressable>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}>
+              <Text style={styles.textStyle}>Set Timer</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
 
       <View style={styles.bottomContainer}>
         <View style={styles.bottomControls}>
-          <TouchableOpacity onPress={() => {}}>
-            <Ionicons name="heart-outline" size={30} color="#777777" />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={changeRepeatMode}>
-            <MaterialCommunityIcons
-              name={`${repeatIcon()}`}
-              size={30}
-              color={repeatMode !== 'off' ? '#FFD369' : '#777777'}
-              // color="#777777"
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => {}}>
-            <Ionicons name="share-outline" size={30} color="#777777" />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => {}}>
-            <Ionicons name="ellipsis-horizontal" size={30} color="#777777" />
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
+            {/* <Ionicons name="ellipsis-horizontal" size={90} color="#777777" /> */}
+            {/* <Ionicons name="time-outline" size={80} color="#777777" /> */}
+            <Ionicons name="timer-outline" size={90} color="#777777" />
           </TouchableOpacity>
         </View>
       </View>
@@ -248,20 +265,43 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  artworkWrapper: {
-    width: 300,
-    height: 340,
-    marginBottom: 25,
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 30,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  buttonClose: {
+    backgroundColor: '#2196F3',
+  },
+  imageWrapper: {
+    width: 220,
+    height: 280,
+    marginBottom: 15,
     shadowColor: '#ccc',
     shadowOffset: {
       width: 5,
       height: 5,
     },
     shadowOpacity: 0.5,
-    shadowRadius: 3.84,
+    shadowRadius: 1.84,
     elevation: 5,
   },
-  artworkImg: {
+  image: {
     width: '100%',
     height: '100%',
     borderRadius: 15,
@@ -308,7 +348,7 @@ const styles = StyleSheet.create({
   },
   bottomControls: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     width: '80%',
   },
 });

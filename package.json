@@ -11,9 +11,10 @@
   },
   "dependencies": {
     "@react-native-community/slider": "^3.0.3",
+    "@react-native-picker/picker": "^2.4.2",
     "react": "17.0.2",
     "react-native": "0.66.3",
-    "react-native-countdown-picker": "0.0.1",
+    "react-native-simple-time-picker": "^1.3.11",
     "react-native-track-player": "^2.0.0-rc18",
     "react-native-vector-icons": "^8.1.0"
   },
