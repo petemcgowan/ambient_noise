@@ -1,12 +1,12 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 
-import MusicPlayer from './component/MusicPlayer';
+import AmbientPlayer from './component/AmbientPlayer';
 
 const App = () => {
   return (
     <View style={styles.container}>
-      <MusicPlayer />
+      <AmbientPlayer />
     </View>
   );
 };

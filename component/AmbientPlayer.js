@@ -13,17 +13,17 @@ import TrackPlayer, {
   useProgress,
   Capability,
   Event,
-  RepeatMode,
   State,
   usePlaybackState,
   useTrackPlayerEvents,
 } from 'react-native-track-player';
 
 import RNBackdrop from './RNBackdrop';
+import TimeLeftModal from './TimeLeftModal';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Slider from '@react-native-community/slider';
+// import Slider from '@react-native-community/slider';
 import sounds from '../model/data';
 import {Animated} from 'react-native';
 import {TimePicker} from 'react-native-simple-time-picker';
@@ -77,7 +77,7 @@ const togglePlayback = async playbackState => {
 
 //   return [playing, toggle];
 // };
-const MusicPlayer = () => {
+const AmbientPlayer = () => {
   // const audio = new Audio(
   //   'https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3',
   // );
@@ -99,14 +99,6 @@ const MusicPlayer = () => {
   const [value, setValue] = React.useState(0);
   // const [playing, toggle] = useAudio(url);
 
-  const handleChange = (value: {hours: number, minutes: number}) => {
-    setHours(value.hours);
-    setMinutes(value.minutes);
-    console.log(
-      'value.hours' + value.hours + ', value.minutes:' + value.minutes,
-    );
-  };
-
   useTrackPlayerEvents([Event.PlaybackTrackChanged], async event => {
     if (event.type === Event.PlaybackTrackChanged && event.nextTrack !== null) {
       const track = await TrackPlayer.getTrack(event.nextTrack);
@@ -115,6 +107,14 @@ const MusicPlayer = () => {
       setTrackImage(image);
     }
   });
+
+  const handleChange = (value: {hours: number, minutes: number}) => {
+    setHours(value.hours);
+    setMinutes(value.minutes);
+    console.log(
+      'value.hours' + value.hours + ', value.minutes:' + value.minutes,
+    );
+  };
 
   Ionicons.loadFont();
   MaterialCommunityIcons.loadFont();
@@ -214,36 +214,47 @@ const MusicPlayer = () => {
           </TouchableOpacity>
         </View>
       </View>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
-          setModalVisible(!modalVisible);
-        }}>
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Countdown Timer (on)</Text>
-            <TimePicker
-              textColor={'black'}
-              value={{hours, minutes}}
-              onChange={handleChange}
-            />
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(false)}>
-              <Text style={styles.textStyle}>Back</Text>
-            </Pressable>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}>
-              <Text style={styles.textStyle}>Set Timer</Text>
-            </Pressable>
+      {/* <TimeLeftModal
+        setModalVisible={setModalVisible}
+        modalVisible={modalVisible}
+        hours={hours}
+        minutes={minutes}
+        setHours={setHours}
+        setMinutes={setMinutes}
+      /> */}
+      <SafeAreaView>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+            setModalVisible(!modalVisible);
+          }}>
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>Set Countdown Timer</Text>
+              <TimePicker
+                textColor={'black'}
+                value={{hours, minutes}}
+                onChange={handleChange}
+              />
+              <View style={styles.modalBottomButtons}>
+                <Pressable
+                  style={[styles.button, styles.buttonClose]}
+                  onPress={() => setModalVisible(false)}>
+                  <Text style={styles.textStyle}>Back</Text>
+                </Pressable>
+                <Pressable
+                  style={[styles.button, styles.buttonClose]}
+                  onPress={() => setModalVisible(!modalVisible)}>
+                  <Text style={styles.textStyle}>Set Timer</Text>
+                </Pressable>
+              </View>
+            </View>
           </View>
-        </View>
-      </Modal>
-
+        </Modal>
+      </SafeAreaView>
       <View style={styles.bottomContainer}>
         <View style={styles.bottomControls}>
           <TouchableOpacity onPress={() => setModalVisible(true)}>
@@ -257,7 +268,7 @@ const MusicPlayer = () => {
   );
 };
 
-export default MusicPlayer;
+export default AmbientPlayer;
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -266,8 +277,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   modalView: {
-    margin: 20,
-    backgroundColor: 'white',
+    marginTop: 80,
+    backgroundColor: 'rgba(122, 158, 199, 1)',
+    // width: '80%',
     borderRadius: 20,
     padding: 30,
     alignItems: 'center',
@@ -280,13 +292,24 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
+  modalBottomButtons: {
+    flexDirection: 'row',
+    width: '100%',
+  },
   button: {
-    borderRadius: 20,
+    width: '50%',
+    borderRadius: 10,
     padding: 10,
     elevation: 2,
   },
   buttonClose: {
-    backgroundColor: '#2196F3',
+    // backgroundColor: 'rgba(122, 158, 199, 1)',
+    backgroundColor: '#393E46',
+    // borderWidth: 1,
+  },
+  textStyle: {
+    color: '#777777',
+    textAlign: 'center',
   },
   imageWrapper: {
     width: 220,
@@ -332,12 +355,6 @@ const styles = StyleSheet.create({
     // justifyContent: 'space-between',
     justifyContent: 'center',
     // marginTop: 15,
-  },
-  artist: {
-    fontSize: 16,
-    fontWeight: '200',
-    textAlign: 'center',
-    color: '#EEEEEE',
   },
   bottomContainer: {
     borderTopColor: '#393E46',
