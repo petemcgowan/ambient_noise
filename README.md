@@ -11,16 +11,12 @@ TODO More info to follow!
 ## Main app components
 
 Ambient Power Off, Noise type 1
-<img src="docs/images/Ambient Power Off 1.png" width="50%" />
+<img src="docs/images/Ambient Power Off Boats.png" width="50%" />
 
-Ambient Power On, Noise type 1
-<img src="docs/images/Ambient Power On 1.png" width="50%" />
+Ambient Power On, Noise type 2
+<img src="docs/images/Ambient Power On Valley.png" width="50%" />
 
-Ambient Power Off, Noise type 3
-<img src="docs/images/Ambient Power Off Sky.png" width="50%" />
-
-Ambient Power On, Noise type 3
-<img src="docs/images/Ambient Power On Sky.png" width="50%" />
+Note: There are other images etc for different noise types which the user swipes between. It's also very likely the background will be dynamic, different better images used etc. Screenshots to follow!...
 
 ## How the app is started
 
