@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {
   TouchableOpacity,
-  Image,
+  ImageBackground,
   Modal,
   Pressable,
   Alert,
@@ -46,18 +46,6 @@ const setupPlayer = async () => {
   await TrackPlayer.add(sounds);
 };
 
-const togglePlayback = async playbackState => {
-  const currentTrack = await TrackPlayer.getCurrentTrack();
-
-  if (currentTrack !== null) {
-    if (playbackState === State.Paused) {
-      await TrackPlayer.play();
-    } else {
-      await TrackPlayer.pause();
-    }
-  }
-};
-
 // const useAudio = url => {
 //   const [audio] = useState(new Audio(url));
 //   const [playing, setPlaying] = useState(false);
@@ -84,7 +72,8 @@ const AmbientPlayer = () => {
   const playbackState = usePlaybackState();
   const progress = useProgress();
 
-  const [trackImage, setTrackImage] = useState();
+  const [trackOnImage, setTrackOnImage] = useState();
+  const [trackOffImage, setTrackOffImage] = useState();
   const [trackTitle, setTrackTitle] = useState();
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -93,19 +82,40 @@ const AmbientPlayer = () => {
   const [repeatMode, setRepeatMode] = useState('off');
 
   const soundsSlider = useRef(null);
-  const [hours, setHours] = React.useState(0);
-  const [minutes, setMinutes] = React.useState(0);
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [intendedPlaying, setIntendedPlaying] = useState(false);
 
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
   // const [playing, toggle] = useAudio(url);
+
+  const togglePlayback = async playbackState => {
+    const currentTrack = await TrackPlayer.getCurrentTrack();
+    setIntendedPlaying(!intendedPlaying);
+    console.log('intendedPlaying:' + intendedPlaying);
+
+    if (currentTrack !== null) {
+      if (playbackState === State.Paused || playbackState === State.Ready) {
+        await TrackPlayer.play();
+      } else {
+        await TrackPlayer.pause();
+      }
+    }
+  };
 
   useTrackPlayerEvents([Event.PlaybackTrackChanged], async event => {
     if (event.type === Event.PlaybackTrackChanged && event.nextTrack !== null) {
+      console.log('useTrackPlayerEvents, Event.PlaybackTrackChanged');
       const track = await TrackPlayer.getTrack(event.nextTrack);
-      const {title, image} = track;
+      const {title, onImage, offImage} = track;
       setTrackTitle(title);
-      setTrackImage(image);
+      setTrackOnImage(onImage);
+      setTrackOffImage(offImage);
     }
+  });
+
+  useTrackPlayerEvents([Event.PlaybackState], async event => {
+    console.log('playbackState' + JSON.stringify(playbackState));
   });
 
   const handleChange = (value: {hours: number, minutes: number}) => {
@@ -124,6 +134,7 @@ const AmbientPlayer = () => {
   };
 
   useEffect(() => {
+    console.log('AmbientPlayer useEffect called');
     setupPlayer();
     scrollX.addListener(({value}) => {
       const index = Math.round(value / width);
@@ -157,8 +168,71 @@ const AmbientPlayer = () => {
           alignItems: 'center',
         }}>
         <View style={styles.imageWrapper}>
-          <Image source={trackImage} style={styles.image} />
+          {/* <View style={styles.powerControls}> */}
+          <TouchableOpacity onPress={() => togglePlayback(playbackState)}>
+            <View
+              style={
+                {
+                  // flexDirection: 'row',
+                  // justifyContent: 'center',
+                  // alignItems: 'center',
+                }
+              }>
+              {intendedPlaying ? (
+                <ImageBackground
+                  source={trackOnImage}
+                  style={[
+                    styles.image,
+                    {justifyContent: 'center', alignItems: 'center'},
+                  ]}>
+                  <Ionicons
+                    name={'power'}
+                    size={200}
+                    // style={{opacity: 0.8}}
+                    color={
+                      // playbackState === State.Playing
+                      intendedPlaying
+                        ? 'rgba(255, 211, 105, 0.75)'
+                        : 'rgba(0, 255, 0, 0.75)'
+                    }
+                  />
+                </ImageBackground>
+              ) : (
+                <ImageBackground
+                  source={trackOffImage}
+                  style={[
+                    styles.image,
+                    {justifyContent: 'center', alignItems: 'center'},
+                  ]}>
+                  <Ionicons
+                    name={'power'}
+                    size={200}
+                    // style={{opacity: 0.94}}
+                    // style={{marginTop: 25}}
+                    color={
+                      // playbackState === State.Playing
+                      intendedPlaying
+                        ? 'rgba(255, 211, 105, 0.75)'
+                        : 'rgba(0, 255, 0, 0.75)'
+                    }
+                  />
+                </ImageBackground>
+              )}
+              {/* <Ionicons
+                // name={playbackState === State.Playing ? 'power' : 'power'}
+                name={'power'}
+                size={140}
+                style={{marginTop: 25}}
+                color={
+                  // playbackState === State.Playing
+                  intendedPlaying ? '#FFD369' : 'rgba(0, 255, 0, 0.65)'
+                }
+              /> */}
+            </View>
+          </TouchableOpacity>
         </View>
+        {/* </View> */}
+        <View style={{width: width}} />
       </Animated.View>
     );
   };
@@ -166,10 +240,10 @@ const AmbientPlayer = () => {
   const dynamicStyles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor:
-        playbackState === State.Playing
-          ? 'rgba(151, 65, 23, 1)'
-          : 'rgba(34, 40, 48, 1)',
+      backgroundColor: intendedPlaying
+        ? // playbackState === State.Playing
+          'rgba(151, 65, 23, 1)'
+        : 'rgba(34, 40, 48, 1)',
     },
   });
 
@@ -177,6 +251,7 @@ const AmbientPlayer = () => {
     <SafeAreaView style={dynamicStyles.container}>
       <View style={styles.mainContainer}>
         <View style={{width: width}}>
+          <RNBackdrop />
           <Animated.FlatList
             ref={soundsSlider}
             data={sounds}
@@ -199,20 +274,20 @@ const AmbientPlayer = () => {
           />
         </View>
 
-        <View style={styles.powerControls}>
+        {/* <View style={styles.powerControls}>
           <TouchableOpacity onPress={() => togglePlayback(playbackState)}>
             <Ionicons
-              name={playbackState === State.Playing ? 'power' : 'power'}
+              // name={playbackState === State.Playing ? 'power' : 'power'}
+              name={'power'}
               size={140}
               style={{marginTop: 25}}
               color={
-                playbackState === State.Playing
-                  ? '#FFD369'
-                  : 'rgba(0, 255, 0, 0.65)'
+                // playbackState === State.Playing
+                intendedPlaying ? '#FFD369' : 'rgba(0, 255, 0, 0.65)'
               }
             />
           </TouchableOpacity>
-        </View>
+        </View>*/}
       </View>
       {/* <TimeLeftModal
         setModalVisible={setModalVisible}
@@ -281,11 +356,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(122, 158, 199, 1)',
     // width: '80%',
     borderRadius: 20,
-    padding: 30,
+    padding: 20,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
-      width: 0,
+      width: 2,
       height: 2,
     },
     shadowOpacity: 0.25,
@@ -312,42 +387,24 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   imageWrapper: {
-    width: 220,
-    height: 280,
+    width: 360,
+    height: 450,
     marginBottom: 15,
     shadowColor: '#ccc',
     shadowOffset: {
-      width: 5,
-      height: 5,
+      width: 1,
+      height: 1,
     },
     shadowOpacity: 0.5,
-    shadowRadius: 1.84,
-    elevation: 5,
+    shadowRadius: 1.34,
+    elevation: 3,
   },
   image: {
     width: '100%',
     height: '100%',
-    borderRadius: 15,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: '600',
-    textAlign: 'center',
-    color: '#EEEEEE',
-  },
-  progressContainer: {
-    height: 40,
-    width: 350,
-    marginTop: 25,
-    flexDirection: 'row',
-  },
-  progressLabelContainer: {
-    width: 340,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  progressLabelTxt: {
-    color: '#fff',
+    alignItems: 'center',
+
+    borderRadius: 40,
   },
   powerControls: {
     flexDirection: 'row',

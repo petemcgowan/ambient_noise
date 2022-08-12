@@ -2,7 +2,7 @@ import React, {useLayoutEffect, useState, useEffect} from 'react';
 
 import {StyleSheet, View, Animated} from 'react-native';
 
-const RNBackdrop = ({activeColor, trackIndex, isPlaying}) => {
+const RNBackdrop = () => {
   const colors = [
     'white',
     'black',
