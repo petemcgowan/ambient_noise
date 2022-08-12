@@ -181,6 +181,7 @@ const AmbientPlayer = () => {
               {intendedPlaying ? (
                 <ImageBackground
                   source={trackOnImage}
+                  imageStyle={styles.image}
                   style={[
                     styles.image,
                     {justifyContent: 'center', alignItems: 'center'},
@@ -188,9 +189,7 @@ const AmbientPlayer = () => {
                   <Ionicons
                     name={'power'}
                     size={200}
-                    // style={{opacity: 0.8}}
                     color={
-                      // playbackState === State.Playing
                       intendedPlaying
                         ? 'rgba(255, 211, 105, 0.75)'
                         : 'rgba(0, 255, 0, 0.75)'
@@ -200,17 +199,18 @@ const AmbientPlayer = () => {
               ) : (
                 <ImageBackground
                   source={trackOffImage}
+                  imageStyle={styles.image}
                   style={[
                     styles.image,
-                    {justifyContent: 'center', alignItems: 'center'},
+                    {
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    },
                   ]}>
                   <Ionicons
                     name={'power'}
                     size={200}
-                    // style={{opacity: 0.94}}
-                    // style={{marginTop: 25}}
                     color={
-                      // playbackState === State.Playing
                       intendedPlaying
                         ? 'rgba(255, 211, 105, 0.75)'
                         : 'rgba(0, 255, 0, 0.75)'
@@ -218,16 +218,6 @@ const AmbientPlayer = () => {
                   />
                 </ImageBackground>
               )}
-              {/* <Ionicons
-                // name={playbackState === State.Playing ? 'power' : 'power'}
-                name={'power'}
-                size={140}
-                style={{marginTop: 25}}
-                color={
-                  // playbackState === State.Playing
-                  intendedPlaying ? '#FFD369' : 'rgba(0, 255, 0, 0.65)'
-                }
-              /> */}
             </View>
           </TouchableOpacity>
         </View>
@@ -403,8 +393,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     alignItems: 'center',
-
-    borderRadius: 40,
+    borderRadius: 70,
   },
   powerControls: {
     flexDirection: 'row',
