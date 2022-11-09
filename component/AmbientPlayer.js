@@ -208,6 +208,7 @@ const AmbientPlayer = () => {
                     },
                   ]}>
                   <Ionicons
+                    // name={'power-outline'}
                     name={'power'}
                     size={200}
                     color={
