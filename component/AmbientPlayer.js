@@ -220,6 +220,9 @@ const AmbientPlayer = () => {
                 </ImageBackground>
               )}
             </View>
+            <View>
+              <Text>test</Text>
+            </View>
           </TouchableOpacity>
         </View>
         {/* </View> */}
