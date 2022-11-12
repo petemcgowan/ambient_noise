@@ -5,9 +5,12 @@ import {
   Modal,
   Pressable,
   Alert,
+  Animated,
   FlatList,
 } from 'react-native';
 import {SafeAreaView, View, Text, StyleSheet, Dimensions} from 'react-native';
+import {CountdownCircleTimer} from 'react-native-countdown-circle-timer';
+import Sound from 'react-native-sound';
 
 import TrackPlayer, {
   useProgress,
@@ -22,13 +25,30 @@ import RNBackdrop from './RNBackdrop';
 import TimeLeftModal from './TimeLeftModal';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 // import Slider from '@react-native-community/slider';
 import sounds from '../model/data';
-import {Animated} from 'react-native';
 import {TimePicker} from 'react-native-simple-time-picker';
 
 const {width, height} = Dimensions.get('window');
+Sound.setCategory('Playback');
+
+var brownNoise1 = new Sound(
+  'Brown_900Hz_LC_Noise_mini.mp3',
+  Sound.MAIN_BUNDLE,
+  error => {
+    if (error) {
+      console.log('failed to load the sound', error);
+      return;
+    }
+    // when loaded successfully
+    console.log(
+      'duration in seconds: ' +
+        brownNoise1.getDuration() +
+        'number of channels: ' +
+        brownNoise1.getNumberOfChannels(),
+    );
+  },
+);
 
 const setupPlayer = async () => {
   await TrackPlayer.setupPlayer();
@@ -76,6 +96,7 @@ const AmbientPlayer = () => {
   const [trackOffImage, setTrackOffImage] = useState();
   const [trackTitle, setTrackTitle] = useState();
   const [modalVisible, setModalVisible] = useState(false);
+  const [timerVisible, setTimerVisible] = useState(false);
 
   const scrollX = useRef(new Animated.Value(0)).current;
   const [songIndex, setSongIndex] = useState(0);
@@ -126,15 +147,14 @@ const AmbientPlayer = () => {
     );
   };
 
-  Ionicons.loadFont();
-  MaterialCommunityIcons.loadFont();
-
   const skipTo = async trackId => {
     await TrackPlayer.skip(trackId);
   };
 
   useEffect(() => {
     console.log('AmbientPlayer useEffect called');
+    brownNoise1.setVolume(1);
+
     setupPlayer();
     scrollX.addListener(({value}) => {
       const index = Math.round(value / width);
@@ -143,9 +163,21 @@ const AmbientPlayer = () => {
     });
 
     return () => {
+      console.log('releasing sounds / listeners in useEffect');
+      brownNoise1.release();
       scrollX.removeAllListeners();
     };
   }, [scrollX]);
+
+  const playPause = () => {
+    brownNoise1.play(success => {
+      if (success) {
+        console.log('successfully finished playing');
+      } else {
+        console.log('playback failed due to audio decoding errors');
+      }
+    });
+  };
 
   // const skipToNext = () => {
   //   soundsSlider.current.scrollToOffset({
@@ -245,7 +277,7 @@ const AmbientPlayer = () => {
     <SafeAreaView style={dynamicStyles.container}>
       <View style={styles.mainContainer}>
         <View style={{width: width}}>
-          <RNBackdrop />
+          {/* <RNBackdrop /> */}
           <Animated.FlatList
             ref={soundsSlider}
             data={sounds}
@@ -266,6 +298,45 @@ const AmbientPlayer = () => {
               {useNativeDriver: true},
             )}
           />
+        </View>
+        <View>
+          {!!timerVisible && (
+            <CountdownCircleTimer
+              isPlaying
+              duration={124}
+              size={90}
+              strokeWidth={3}
+              colors={[
+                '#4B3B40',
+                '#82735C',
+                '#9DB17C',
+                '#9CDE9F',
+                '#D1F5BE',
+                '#3C91E6',
+                '#9FD356',
+                '#342E37',
+                '#FA824C',
+              ]}
+              // children={children}
+              onComplete={() => {
+                console.log('ON_COMPLETE BEFORE RETURN');
+                return [true, 0];
+              }}>
+              {({remainingTime, animatedColor}) => (
+                <Animated.Text style={{color: animatedColor}}>
+                  <View style={styles.timer}>
+                    <View style={styles.text}>
+                      <Text>Remaining time</Text>
+                    </View>
+                    <View style={styles.value}>
+                      <Text>{formatRemainingTime(remainingTime)}</Text>
+                    </View>
+                  </View>
+                  {renderTime}
+                </Animated.Text>
+              )}
+            </CountdownCircleTimer>
+          )}
         </View>
 
         {/* <View style={styles.powerControls}>
@@ -316,7 +387,10 @@ const AmbientPlayer = () => {
                 </Pressable>
                 <Pressable
                   style={[styles.button, styles.buttonClose]}
-                  onPress={() => setModalVisible(!modalVisible)}>
+                  onPress={() => {
+                    setModalVisible(!modalVisible);
+                    setTimerVisible(true);
+                  }}>
                   <Text style={styles.textStyle}>Set Timer</Text>
                 </Pressable>
               </View>
@@ -326,7 +400,8 @@ const AmbientPlayer = () => {
       </SafeAreaView>
       <View style={styles.bottomContainer}>
         <View style={styles.bottomControls}>
-          <TouchableOpacity onPress={() => setModalVisible(true)}>
+          <TouchableOpacity onPress={playPause}>
+            {/* <TouchableOpacity onPress={() => setModalVisible(true)}> */}
             {/* <Ionicons name="ellipsis-horizontal" size={90} color="#777777" /> */}
             {/* <Ionicons name="time-outline" size={80} color="#777777" /> */}
             <Ionicons name="timer-outline" size={90} color="#777777" />
@@ -339,11 +414,43 @@ const AmbientPlayer = () => {
 
 export default AmbientPlayer;
 
+const formatRemainingTime = time => {
+  const minutes = Math.floor((time % 3600) / 60);
+  const seconds = time % 60;
+
+  return `${minutes}:${seconds}`;
+};
+
+const renderTime = ({remainingTime}) => {
+  if (remainingTime === 0) {
+    return <View style={styles.timer}>Too late...</View>;
+  }
+
+  return (
+    <View style={styles.timer}>
+      <View style={styles.text}>Remaining time</View>
+      <View style={styles.value}>{formatRemainingTime(remainingTime)}</View>
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  timer: {
+    // fontFamily: "Montserrat";
+    // flexDirection: column;
+    alignItems: 'center',
+  },
+  text: {
+    color: '#ccc',
+    fontSize: 10,
+  },
+  value: {
+    fontSize: 12,
   },
   modalView: {
     marginTop: 80,
