@@ -12,6 +12,14 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		2C296D89291FD8DB00766779 /* wa-essence-foley_drums-sticks_clicks-case_3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2C296D81291FD8DA00766779 /* wa-essence-foley_drums-sticks_clicks-case_3.wav */; };
+		2C296D8A291FD8DB00766779 /* Brown_900Hz_LC_Noise_mini.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C296D82291FD8DA00766779 /* Brown_900Hz_LC_Noise_mini.mp3 */; };
+		2C296D8B291FD8DB00766779 /* Brown_900Hz_LC_Noise_MOD_mini.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C296D83291FD8DA00766779 /* Brown_900Hz_LC_Noise_MOD_mini.mp3 */; };
+		2C296D8C291FD8DB00766779 /* wa-essence-foley_drums-sticks_clicks-xylo_block_5.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2C296D84291FD8DA00766779 /* wa-essence-foley_drums-sticks_clicks-xylo_block_5.wav */; };
+		2C296D8D291FD8DB00766779 /* Pink_Brown_900Hz_LC_Noise_Together_mini.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C296D85291FD8DB00766779 /* Pink_Brown_900Hz_LC_Noise_Together_mini.mp3 */; };
+		2C296D8E291FD8DB00766779 /* Noise_Brown_v3_131_600_tighter_slopes_mini.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C296D86291FD8DB00766779 /* Noise_Brown_v3_131_600_tighter_slopes_mini.mp3 */; };
+		2C296D8F291FD8DB00766779 /* Block_DFAM_ModX_V5.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2C296D87291FD8DB00766779 /* Block_DFAM_ModX_V5.wav */; };
+		2C296D90291FD8DB00766779 /* wa-essence-foley_drums-sticks_clicks-jam_jar.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2C296D88291FD8DB00766779 /* wa-essence-foley_drums-sticks_clicks-jam_jar.wav */; };
 		7699B88040F8A987B510C191 /* libPods-ambient_power_native-ambient_power_native_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-ambient_power_native-ambient_power_native_Tests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -37,6 +45,14 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ambient_power_native/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ambient_power_native/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-ambient_power_native-ambient_power_native_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ambient_power_native-ambient_power_native_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C296D81291FD8DA00766779 /* wa-essence-foley_drums-sticks_clicks-case_3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "wa-essence-foley_drums-sticks_clicks-case_3.wav"; path = "../assets/sounds/wa-essence-foley_drums-sticks_clicks-case_3.wav"; sourceTree = "<group>"; };
+		2C296D82291FD8DA00766779 /* Brown_900Hz_LC_Noise_mini.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Brown_900Hz_LC_Noise_mini.mp3; path = ../assets/sounds/Brown_900Hz_LC_Noise_mini.mp3; sourceTree = "<group>"; };
+		2C296D83291FD8DA00766779 /* Brown_900Hz_LC_Noise_MOD_mini.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Brown_900Hz_LC_Noise_MOD_mini.mp3; path = ../assets/sounds/Brown_900Hz_LC_Noise_MOD_mini.mp3; sourceTree = "<group>"; };
+		2C296D84291FD8DA00766779 /* wa-essence-foley_drums-sticks_clicks-xylo_block_5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "wa-essence-foley_drums-sticks_clicks-xylo_block_5.wav"; path = "../assets/sounds/wa-essence-foley_drums-sticks_clicks-xylo_block_5.wav"; sourceTree = "<group>"; };
+		2C296D85291FD8DB00766779 /* Pink_Brown_900Hz_LC_Noise_Together_mini.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Pink_Brown_900Hz_LC_Noise_Together_mini.mp3; path = ../assets/sounds/Pink_Brown_900Hz_LC_Noise_Together_mini.mp3; sourceTree = "<group>"; };
+		2C296D86291FD8DB00766779 /* Noise_Brown_v3_131_600_tighter_slopes_mini.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Noise_Brown_v3_131_600_tighter_slopes_mini.mp3; path = ../assets/sounds/Noise_Brown_v3_131_600_tighter_slopes_mini.mp3; sourceTree = "<group>"; };
+		2C296D87291FD8DB00766779 /* Block_DFAM_ModX_V5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Block_DFAM_ModX_V5.wav; path = ../assets/sounds/Block_DFAM_ModX_V5.wav; sourceTree = "<group>"; };
+		2C296D88291FD8DB00766779 /* wa-essence-foley_drums-sticks_clicks-jam_jar.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "wa-essence-foley_drums-sticks_clicks-jam_jar.wav"; path = "../assets/sounds/wa-essence-foley_drums-sticks_clicks-jam_jar.wav"; sourceTree = "<group>"; };
 		2CC60A06291A86A200F6F53E /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ionicons.ttf; sourceTree = "<group>"; };
 		2CC60A07291A877400F6F53E /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
 		2CC60A08291A877A00F6F53E /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Regular.ttf; sourceTree = "<group>"; };
@@ -132,6 +148,14 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				2C296D87291FD8DB00766779 /* Block_DFAM_ModX_V5.wav */,
+				2C296D82291FD8DA00766779 /* Brown_900Hz_LC_Noise_mini.mp3 */,
+				2C296D83291FD8DA00766779 /* Brown_900Hz_LC_Noise_MOD_mini.mp3 */,
+				2C296D86291FD8DB00766779 /* Noise_Brown_v3_131_600_tighter_slopes_mini.mp3 */,
+				2C296D85291FD8DB00766779 /* Pink_Brown_900Hz_LC_Noise_Together_mini.mp3 */,
+				2C296D81291FD8DA00766779 /* wa-essence-foley_drums-sticks_clicks-case_3.wav */,
+				2C296D88291FD8DB00766779 /* wa-essence-foley_drums-sticks_clicks-jam_jar.wav */,
+				2C296D84291FD8DA00766779 /* wa-essence-foley_drums-sticks_clicks-xylo_block_5.wav */,
 				13B07FAE1A68108700A75B9A /* ambient_power_native */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* ambient_power_native_Tests */,
@@ -258,7 +282,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C296D90291FD8DB00766779 /* wa-essence-foley_drums-sticks_clicks-jam_jar.wav in Resources */,
+				2C296D8A291FD8DB00766779 /* Brown_900Hz_LC_Noise_mini.mp3 in Resources */,
+				2C296D8E291FD8DB00766779 /* Noise_Brown_v3_131_600_tighter_slopes_mini.mp3 in Resources */,
+				2C296D8C291FD8DB00766779 /* wa-essence-foley_drums-sticks_clicks-xylo_block_5.wav in Resources */,
+				2C296D89291FD8DB00766779 /* wa-essence-foley_drums-sticks_clicks-case_3.wav in Resources */,
+				2C296D8F291FD8DB00766779 /* Block_DFAM_ModX_V5.wav in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				2C296D8D291FD8DB00766779 /* Pink_Brown_900Hz_LC_Noise_Together_mini.mp3 in Resources */,
+				2C296D8B291FD8DB00766779 /* Brown_900Hz_LC_Noise_MOD_mini.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
