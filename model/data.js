@@ -1,4 +1,3 @@
-// All of these artists are at https://pixabay.com/music/search/mood/laid%20back/
 const sounds = [
   {
     title: 'Brown 900',
@@ -7,6 +6,7 @@ const sounds = [
     onImage: require('../assets/images/on/water_foam.jpg'),
     offImage: require('../assets/images/off/switzerland_lake_mountains.jpg'),
     url: require('../assets/sounds/Noise_Brown_v3_131_600_tighter_slopes_mini.mp3'),
+    sound: 'Noise_Brown_v3_131_600_tighter_slopes_mini.mp3',
     // color: "#5f1ddd",
     id: '1',
     duration: 886,
@@ -19,6 +19,7 @@ const sounds = [
     onImage: require('../assets/images/on/clouds.jpg'),
     offImage: require('../assets/images/off/palm_tree_night_skyline.jpg'),
     url: require('../assets/sounds/Brown_900Hz_LC_Noise_MOD_mini.mp3'),
+    sound: 'Brown_900Hz_LC_Noise_MOD_mini.mp3',
     id: '2',
     // "https://p.scdn.co/mp3-preview/ef83054a53d976a0e5e947b39cff362a2db7c631?cid=1d62fc4c9282424c8d5611d95669ba0d",
     // color: "#ffb77a",
@@ -31,6 +32,7 @@ const sounds = [
     onImage: require('../assets/images/on/HotAirLowerBalloonsInTheSky.jpg'),
     offImage: require('../assets/images/off/cool_beach_sunsets.jpg'),
     url: require('../assets/sounds/Pink_Brown_900Hz_LC_Noise_Together_mini.mp3'),
+    sound: 'Pink_Brown_900Hz_LC_Noise_Together_mini.mp3',
     // color: "#CFE3E2",
     id: '3',
     duration: 886,
@@ -42,6 +44,7 @@ const sounds = [
     onImage: require('../assets/images/on/blue_sky_field_of_wheat.jpg'),
     offImage: require('../assets/images/off/glass_water_mountain_valley.jpg'),
     url: require('../assets/sounds/Brown_900Hz_LC_Noise_mini.mp3'),
+    sound: 'Brown_900Hz_LC_Noise_mini.mp3',
     // color: "#5f9fff",
     id: '4',
     duration: 886,

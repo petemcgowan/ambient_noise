@@ -12,132 +12,74 @@ import {SafeAreaView, View, Text, StyleSheet, Dimensions} from 'react-native';
 import {CountdownCircleTimer} from 'react-native-countdown-circle-timer';
 import Sound from 'react-native-sound';
 
-import TrackPlayer, {
-  useProgress,
-  Capability,
-  Event,
-  State,
-  usePlaybackState,
-  useTrackPlayerEvents,
-} from 'react-native-track-player';
-
-import RNBackdrop from './RNBackdrop';
+// import RNBackdrop from './RNBackdrop';
 import TimeLeftModal from './TimeLeftModal';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-// import Slider from '@react-native-community/slider';
 import sounds from '../model/data';
 import {TimePicker} from 'react-native-simple-time-picker';
 
 const {width, height} = Dimensions.get('window');
 Sound.setCategory('Playback');
 
-var brownNoise1 = new Sound(
-  'Brown_900Hz_LC_Noise_mini.mp3',
-  Sound.MAIN_BUNDLE,
-  error => {
-    if (error) {
-      console.log('failed to load the sound', error);
-      return;
-    }
-    // when loaded successfully
-    console.log(
-      'duration in seconds: ' +
-        brownNoise1.getDuration() +
-        'number of channels: ' +
-        brownNoise1.getNumberOfChannels(),
-    );
-  },
-);
-
-const setupPlayer = async () => {
-  await TrackPlayer.setupPlayer();
-  await TrackPlayer.setVolume(0.35);
-  // TODO: Apparently this isn't working but will work in future version of React Native Track Player
-  await TrackPlayer.updateOptions({
-    capabilities: [
-      Capability.Play,
-      Capability.Pause,
-      Capability.SkipToNext,
-      Capability.SkipToPrevious,
-      Capability.Stop,
-    ],
-  });
-  await TrackPlayer.add(sounds);
-};
-
-// const useAudio = url => {
-//   const [audio] = useState(new Audio(url));
-//   const [playing, setPlaying] = useState(false);
-
-//   const toggle = () => setPlaying(!playing);
-
-//   useEffect(() => {
-//     playing ? audio.play() : audio.pause();
-//   }, [playing]);
-
-//   useEffect(() => {
-//     audio.addEventListener('ended', () => setPlaying(false));
-//     return () => {
-//       audio.removeEventListener('ended', () => setPlaying(false));
-//     };
-//   }, []);
-
-//   return [playing, toggle];
-// };
 const AmbientPlayer = () => {
-  // const audio = new Audio(
-  //   'https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3',
-  // );
-  const playbackState = usePlaybackState();
-  const progress = useProgress();
-
-  const [trackOnImage, setTrackOnImage] = useState();
-  const [trackOffImage, setTrackOffImage] = useState();
-  const [trackTitle, setTrackTitle] = useState();
   const [modalVisible, setModalVisible] = useState(false);
   const [timerVisible, setTimerVisible] = useState(false);
 
   const scrollX = useRef(new Animated.Value(0)).current;
   const [songIndex, setSongIndex] = useState(0);
-  const [repeatMode, setRepeatMode] = useState('off');
 
   const soundsSlider = useRef(null);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
+  const [playingSound, setPlayingSound] = useState(
+    new Sound(
+      sounds[songIndex].sound,
+      // sounds[songIndex],
+      Sound.MAIN_BUNDLE,
+      error => {
+        if (error) {
+          console.log('failed to load the sound', error);
+          return;
+        }
+        // when loaded successfully
+        console.log(
+          'duration in seconds: ' +
+            playingSound.getDuration() +
+            'number of channels: ' +
+            playingSound.getNumberOfChannels(),
+        );
+      },
+    ),
+  );
   const [intendedPlaying, setIntendedPlaying] = useState(false);
 
-  const [value, setValue] = useState(0);
-  // const [playing, toggle] = useAudio(url);
+  playingSound.setVolume(0.9);
+  playingSound.setNumberOfLoops(-1); // loop indefinitely
 
-  const togglePlayback = async playbackState => {
-    const currentTrack = await TrackPlayer.getCurrentTrack();
+  const togglePlayback = index => {
+    console.log('togglePlayback, index:' + index);
+    console.log('sounds[songIndex]:' + JSON.stringify(sounds[songIndex]));
+    console.log(
+      'sounds[songIndex], index:' + JSON.stringify(sounds[songIndex].sound),
+    );
+
+    if (!intendedPlaying) {
+      playingSound.play(success => {
+        if (success) {
+          console.log('successfully finished playing');
+        } else {
+          console.log('playback failed due to audio decoding errors');
+        }
+      });
+    } else {
+      playingSound.pause();
+      console.log('pause called');
+    }
+
     setIntendedPlaying(!intendedPlaying);
     console.log('intendedPlaying:' + intendedPlaying);
-
-    if (currentTrack !== null) {
-      if (playbackState === State.Paused || playbackState === State.Ready) {
-        await TrackPlayer.play();
-      } else {
-        await TrackPlayer.pause();
-      }
-    }
   };
-
-  useTrackPlayerEvents([Event.PlaybackTrackChanged], async event => {
-    if (event.type === Event.PlaybackTrackChanged && event.nextTrack !== null) {
-      console.log('useTrackPlayerEvents, Event.PlaybackTrackChanged');
-      const track = await TrackPlayer.getTrack(event.nextTrack);
-      const {title, onImage, offImage} = track;
-      setTrackTitle(title);
-      setTrackOnImage(onImage);
-      setTrackOffImage(offImage);
-    }
-  });
-
-  useTrackPlayerEvents([Event.PlaybackState], async event => {
-    console.log('playbackState' + JSON.stringify(playbackState));
-  });
 
   const handleChange = (value: {hours: number, minutes: number}) => {
     setHours(value.hours);
@@ -147,51 +89,47 @@ const AmbientPlayer = () => {
     );
   };
 
-  const skipTo = async trackId => {
-    await TrackPlayer.skip(trackId);
-  };
-
   useEffect(() => {
     console.log('AmbientPlayer useEffect called');
-    brownNoise1.setVolume(1);
 
-    setupPlayer();
     scrollX.addListener(({value}) => {
       const index = Math.round(value / width);
-      skipTo(index);
-      setSongIndex(index);
+      if (index !== songIndex) {
+        setSongIndex(index);
+        console.log('Setting song index on swipe(Scrollx):' + index);
+        setPlayingSound(
+          new Sound(sounds[songIndex].sound, Sound.MAIN_BUNDLE, error => {
+            if (error) {
+              console.log('failed to load the sound', error);
+              return;
+            }
+            // when loaded successfully
+            console.log(
+              'duration in seconds: ' +
+                playingSound.getDuration() +
+                'number of channels: ' +
+                playingSound.getNumberOfChannels(),
+            );
+          }),
+        );
+        playingSound.setVolume(0.8);
+        playingSound.setNumberOfLoops(-1); // loop indefinitely
+      } // songIndex compare
     });
 
     return () => {
       console.log('releasing sounds / listeners in useEffect');
-      brownNoise1.release();
+      playingSound.release();
       scrollX.removeAllListeners();
     };
-  }, [scrollX]);
-
-  const playPause = () => {
-    brownNoise1.play(success => {
-      if (success) {
-        console.log('successfully finished playing');
-      } else {
-        console.log('playback failed due to audio decoding errors');
-      }
-    });
-  };
-
-  // const skipToNext = () => {
-  //   soundsSlider.current.scrollToOffset({
-  //     offset: (songIndex + 1) * width,
-  //   });
-  // };
-
-  // const skipToPrevious = () => {
-  //   soundsSlider.current.scrollToOffset({
-  //     offset: (songIndex - 1) * width,
-  //   });
-  // };
+  }, [scrollX, playingSound, songIndex]);
 
   const renderSounds = ({index, item}) => {
+    console.log('renderSounds: songIndex:' + songIndex + ', index:' + index);
+    console.log(
+      'renderSounds: sounds[songIndex].onImage:' + sounds[songIndex].onImage,
+    );
+    console.log('renderSounds: sounds[index].onImage:' + sounds[index].onImage);
     return (
       <Animated.View
         style={{
@@ -201,18 +139,11 @@ const AmbientPlayer = () => {
         }}>
         <View style={styles.imageWrapper}>
           {/* <View style={styles.powerControls}> */}
-          <TouchableOpacity onPress={() => togglePlayback(playbackState)}>
-            <View
-              style={
-                {
-                  // flexDirection: 'row',
-                  // justifyContent: 'center',
-                  // alignItems: 'center',
-                }
-              }>
+          <TouchableOpacity onPress={() => togglePlayback(index)}>
+            <View style={{}}>
               {intendedPlaying ? (
                 <ImageBackground
-                  source={trackOnImage}
+                  source={sounds[index].onImage}
                   imageStyle={styles.image}
                   style={[
                     styles.image,
@@ -230,7 +161,7 @@ const AmbientPlayer = () => {
                 </ImageBackground>
               ) : (
                 <ImageBackground
-                  source={trackOffImage}
+                  source={sounds[index].offImage}
                   imageStyle={styles.image}
                   style={[
                     styles.image,
@@ -252,12 +183,8 @@ const AmbientPlayer = () => {
                 </ImageBackground>
               )}
             </View>
-            <View>
-              <Text>test</Text>
-            </View>
           </TouchableOpacity>
         </View>
-        {/* </View> */}
         <View style={{width: width}} />
       </Animated.View>
     );
@@ -267,8 +194,7 @@ const AmbientPlayer = () => {
     container: {
       flex: 1,
       backgroundColor: intendedPlaying
-        ? // playbackState === State.Playing
-          'rgba(151, 65, 23, 1)'
+        ? 'rgba(151, 65, 23, 1)'
         : 'rgba(34, 40, 48, 1)',
     },
   });
@@ -317,7 +243,6 @@ const AmbientPlayer = () => {
                 '#342E37',
                 '#FA824C',
               ]}
-              // children={children}
               onComplete={() => {
                 console.log('ON_COMPLETE BEFORE RETURN');
                 return [true, 0];
@@ -338,21 +263,6 @@ const AmbientPlayer = () => {
             </CountdownCircleTimer>
           )}
         </View>
-
-        {/* <View style={styles.powerControls}>
-          <TouchableOpacity onPress={() => togglePlayback(playbackState)}>
-            <Ionicons
-              // name={playbackState === State.Playing ? 'power' : 'power'}
-              name={'power'}
-              size={140}
-              style={{marginTop: 25}}
-              color={
-                // playbackState === State.Playing
-                intendedPlaying ? '#FFD369' : 'rgba(0, 255, 0, 0.65)'
-              }
-            />
-          </TouchableOpacity>
-        </View>*/}
       </View>
       {/* <TimeLeftModal
         setModalVisible={setModalVisible}
@@ -400,8 +310,8 @@ const AmbientPlayer = () => {
       </SafeAreaView>
       <View style={styles.bottomContainer}>
         <View style={styles.bottomControls}>
-          <TouchableOpacity onPress={playPause}>
-            {/* <TouchableOpacity onPress={() => setModalVisible(true)}> */}
+          {/* <TouchableOpacity onPress={playPause}> */}
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
             {/* <Ionicons name="ellipsis-horizontal" size={90} color="#777777" /> */}
             {/* <Ionicons name="time-outline" size={80} color="#777777" /> */}
             <Ionicons name="timer-outline" size={90} color="#777777" />
