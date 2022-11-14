@@ -6,7 +6,6 @@ import {
   Pressable,
   Alert,
   Animated,
-  FlatList,
 } from 'react-native';
 import {SafeAreaView, View, Text, StyleSheet, Dimensions} from 'react-native';
 import {CountdownCircleTimer} from 'react-native-countdown-circle-timer';
@@ -19,7 +18,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import sounds from '../model/data';
 import {TimePicker} from 'react-native-simple-time-picker';
 
-const {width, height} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 Sound.setCategory('Playback');
 
 const AmbientPlayer = () => {
@@ -33,38 +32,40 @@ const AmbientPlayer = () => {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [playingSound, setPlayingSound] = useState(
-    new Sound(
-      sounds[songIndex].sound,
-      // sounds[songIndex],
-      Sound.MAIN_BUNDLE,
-      error => {
-        if (error) {
-          console.log('failed to load the sound', error);
-          return;
-        }
-        // when loaded successfully
-        console.log(
-          'duration in seconds: ' +
-            playingSound.getDuration() +
-            'number of channels: ' +
-            playingSound.getNumberOfChannels(),
-        );
-      },
-    ),
+    new Sound(sounds[songIndex].sound, Sound.MAIN_BUNDLE, error => {
+      if (error) {
+        console.log('failed to load the noise sound', error);
+        return;
+      }
+    }),
+  );
+  const knockOnSound = new Sound('on2sample.mp3', Sound.MAIN_BUNDLE, error => {
+    if (error) {
+      console.log('failed to load the knock on sound', error);
+      return;
+    }
+  });
+  const knockOffSound = new Sound(
+    'off2sample.mp3',
+    Sound.MAIN_BUNDLE,
+    error => {
+      if (error) {
+        console.log('failed to load the knock off sound', error);
+        return;
+      }
+    },
   );
   const [intendedPlaying, setIntendedPlaying] = useState(false);
 
   playingSound.setVolume(0.9);
+  knockOnSound.setVolume(1);
+  knockOffSound.setVolume(1);
   playingSound.setNumberOfLoops(-1); // loop indefinitely
 
   const togglePlayback = index => {
-    console.log('togglePlayback, index:' + index);
-    console.log('sounds[songIndex]:' + JSON.stringify(sounds[songIndex]));
-    console.log(
-      'sounds[songIndex], index:' + JSON.stringify(sounds[songIndex].sound),
-    );
-
+    console.log('togglePlayback, intendedPlaying:' + intendedPlaying);
     if (!intendedPlaying) {
+      knockOnSound.play();
       playingSound.play(success => {
         if (success) {
           console.log('successfully finished playing');
@@ -74,6 +75,7 @@ const AmbientPlayer = () => {
       });
     } else {
       playingSound.pause();
+      knockOffSound.play();
       console.log('pause called');
     }
 
@@ -103,13 +105,6 @@ const AmbientPlayer = () => {
               console.log('failed to load the sound', error);
               return;
             }
-            // when loaded successfully
-            console.log(
-              'duration in seconds: ' +
-                playingSound.getDuration() +
-                'number of channels: ' +
-                playingSound.getNumberOfChannels(),
-            );
           }),
         );
         playingSound.setVolume(0.8);
@@ -125,11 +120,6 @@ const AmbientPlayer = () => {
   }, [scrollX, playingSound, songIndex]);
 
   const renderSounds = ({index, item}) => {
-    console.log('renderSounds: songIndex:' + songIndex + ', index:' + index);
-    console.log(
-      'renderSounds: sounds[songIndex].onImage:' + sounds[songIndex].onImage,
-    );
-    console.log('renderSounds: sounds[index].onImage:' + sounds[index].onImage);
     return (
       <Animated.View
         style={{
