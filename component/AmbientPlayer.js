@@ -7,19 +7,25 @@ import {
   Alert,
   Animated,
 } from 'react-native';
+import Video from 'react-native-video';
+import nightWavesAndSunVideo from '../assets/videos/nightWavesAndSun.mp4';
+import styled from 'styled-components/native';
+
 import {SafeAreaView, View, Text, StyleSheet, Dimensions} from 'react-native';
 import {CountdownCircleTimer} from 'react-native-countdown-circle-timer';
 import Sound from 'react-native-sound';
 
-// import RNBackdrop from './RNBackdrop';
 import TimeLeftModal from './TimeLeftModal';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import sounds from '../model/data';
 import {TimePicker} from 'react-native-simple-time-picker';
+import {LogBox} from 'react-native';
 
-const {width} = Dimensions.get('window');
+// const {width} = Dimensions.get('window');
 Sound.setCategory('Playback');
+const {width, height} = Dimensions.get('window');
+LogBox.ignoreLogs(['Sending']);
 
 const AmbientPlayer = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -130,47 +136,46 @@ const AmbientPlayer = () => {
         <View style={styles.imageWrapper}>
           {/* <View style={styles.powerControls}> */}
           <TouchableOpacity onPress={() => togglePlayback(index)}>
-            <View style={{}}>
+            <View
+              style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
               {intendedPlaying ? (
-                <ImageBackground
-                  source={sounds[index].onImage}
-                  imageStyle={styles.image}
-                  style={[
-                    styles.image,
-                    {justifyContent: 'center', alignItems: 'center'},
-                  ]}>
-                  <Ionicons
-                    name={'power'}
-                    size={200}
-                    color={
-                      intendedPlaying
-                        ? 'rgba(255, 211, 105, 0.75)'
-                        : 'rgba(0, 255, 0, 0.75)'
-                    }
-                  />
-                </ImageBackground>
-              ) : (
-                <ImageBackground
-                  source={sounds[index].offImage}
-                  imageStyle={styles.image}
+                <Ionicons
+                  name={'power'}
+                  size={200}
                   style={[
                     styles.image,
                     {
                       justifyContent: 'center',
                       alignItems: 'center',
                     },
-                  ]}>
-                  <Ionicons
-                    // name={'power-outline'}
-                    name={'power'}
-                    size={200}
-                    color={
-                      intendedPlaying
-                        ? 'rgba(255, 211, 105, 0.75)'
-                        : 'rgba(0, 255, 0, 0.75)'
-                    }
-                  />
-                </ImageBackground>
+                  ]}
+                  color={
+                    intendedPlaying
+                      ? 'rgba(255, 211, 105, 0.75)'
+                      : 'rgba(0, 255, 0, 0.75)'
+                  }
+                />
+              ) : (
+                <Ionicons
+                  // name={'power-outline'}
+                  name={'power'}
+                  size={200}
+                  style={[
+                    styles.image,
+                    {
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    },
+                  ]}
+                  color={
+                    intendedPlaying
+                      ? 'rgba(255, 211, 105, 0.75)'
+                      : 'rgba(0, 255, 0, 0.75)'
+                  }
+                />
               )}
             </View>
           </TouchableOpacity>
@@ -187,74 +192,111 @@ const AmbientPlayer = () => {
         ? 'rgba(151, 65, 23, 1)'
         : 'rgba(34, 40, 48, 1)',
     },
+    backgroundVideo: {
+      height: height,
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      alignItems: 'stretch',
+      bottom: 0,
+      right: 0,
+    },
   });
-
+  // <SafeAreaView style={dynamicStyles.container}>
+  //   </SafeAreaView>
+  {
+    /* <TimeLeftModal
+        setModalVisible={setModalVisible}
+        modalVisible={modalVisible}
+        hours={hours}
+        minutes={minutes}
+        setHours={setHours}
+        setMinutes={setMinutes}
+      /> */
+  }
   return (
     <SafeAreaView style={dynamicStyles.container}>
-      <View style={styles.mainContainer}>
-        <View style={{width: width}}>
-          {/* <RNBackdrop /> */}
-          <Animated.FlatList
-            ref={soundsSlider}
-            data={sounds}
-            renderItem={renderSounds}
-            keyExtractor={item => item.id}
-            horizontal
-            pagingEnabled
-            showsHorizontalScrollIndicator={false}
-            scrollEventThrottle={16}
-            onScroll={Animated.event(
-              [
-                {
-                  nativeEvent: {
-                    contentOffset: {x: scrollX},
+      <View>
+        <Video
+          source={require('../assets/videos/nightWavesAndSun.mp4')}
+          style={dynamicStyles.backgroundVideo}
+          muted={true}
+          repeat={true}
+          paused={!intendedPlaying}
+          resizeMode={'cover'}
+          rate={0.7}
+          ignoreSilentSwitch={'obey'}
+        />
+        <Wrapper>
+          {/* <View style={styles.mainContainer}> */}
+          <View
+            style={{
+              width: width,
+            }}>
+            <Animated.FlatList
+              ref={soundsSlider}
+              data={sounds}
+              renderItem={renderSounds}
+              keyExtractor={item => item.id}
+              horizontal
+              pagingEnabled
+              showsHorizontalScrollIndicator={false}
+              scrollEventThrottle={16}
+              onScroll={Animated.event(
+                [
+                  {
+                    nativeEvent: {
+                      contentOffset: {x: scrollX},
+                    },
                   },
-                },
-              ],
-              {useNativeDriver: true},
-            )}
-          />
-        </View>
-        <View>
-          {!!timerVisible && (
-            <CountdownCircleTimer
-              isPlaying
-              duration={124}
-              size={90}
-              strokeWidth={3}
-              colors={[
-                '#4B3B40',
-                '#82735C',
-                '#9DB17C',
-                '#9CDE9F',
-                '#D1F5BE',
-                '#3C91E6',
-                '#9FD356',
-                '#342E37',
-                '#FA824C',
-              ]}
-              onComplete={() => {
-                console.log('ON_COMPLETE BEFORE RETURN');
-                return [true, 0];
-              }}>
-              {({remainingTime, animatedColor}) => (
-                <Animated.Text style={{color: animatedColor}}>
-                  <View style={styles.timer}>
-                    <View style={styles.text}>
-                      <Text>Remaining time</Text>
-                    </View>
-                    <View style={styles.value}>
-                      <Text>{formatRemainingTime(remainingTime)}</Text>
-                    </View>
-                  </View>
-                  {renderTime}
-                </Animated.Text>
+                ],
+                {useNativeDriver: true},
               )}
-            </CountdownCircleTimer>
-          )}
-        </View>
-      </View>
-      {/* <TimeLeftModal
+            />
+          </View>
+          <View>
+            {!!timerVisible && (
+              <CountdownCircleTimer
+                isPlaying
+                duration={124}
+                size={90}
+                strokeWidth={3}
+                colors={[
+                  '#4B3B40',
+                  '#82735C',
+                  '#9DB17C',
+                  '#9CDE9F',
+                  '#D1F5BE',
+                  '#3C91E6',
+                  '#9FD356',
+                  '#342E37',
+                  '#FA824C',
+                ]}
+                onComplete={() => {
+                  console.log('ON_COMPLETE BEFORE RETURN');
+                  return [true, 0];
+                }}>
+                {({remainingTime, animatedColor}) => (
+                  <Animated.Text style={{color: animatedColor}}>
+                    <View style={styles.timer}>
+                      <View style={styles.text}>
+                        <Text style={styles.text}>Remaining</Text>
+                        <Text style={styles.text}>time</Text>
+                      </View>
+                      <View style={styles.value}>
+                        <Text style={styles.text}>
+                          {formatRemainingTime(remainingTime)}
+                        </Text>
+                      </View>
+                    </View>
+                    {renderTime}
+                  </Animated.Text>
+                )}
+              </CountdownCircleTimer>
+            )}
+          </View>
+          {/* </View> */}
+          {/* <TimeLeftModal
         setModalVisible={setModalVisible}
         modalVisible={modalVisible}
         hours={hours}
@@ -262,51 +304,50 @@ const AmbientPlayer = () => {
         setHours={setHours}
         setMinutes={setMinutes}
       /> */}
-      <SafeAreaView>
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
-            setModalVisible(!modalVisible);
-          }}>
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <Text style={styles.modalText}>Set Countdown Timer</Text>
-              <TimePicker
-                textColor={'black'}
-                value={{hours, minutes}}
-                onChange={handleChange}
-              />
-              <View style={styles.modalBottomButtons}>
-                <Pressable
-                  style={[styles.button, styles.buttonClose]}
-                  onPress={() => setModalVisible(false)}>
-                  <Text style={styles.textStyle}>Back</Text>
-                </Pressable>
-                <Pressable
-                  style={[styles.button, styles.buttonClose]}
-                  onPress={() => {
-                    setModalVisible(!modalVisible);
-                    setTimerVisible(true);
-                  }}>
-                  <Text style={styles.textStyle}>Set Timer</Text>
-                </Pressable>
+          <SafeAreaView>
+            <Modal
+              animationType="slide"
+              transparent={true}
+              visible={modalVisible}
+              onRequestClose={() => {
+                Alert.alert('Modal has been closed.');
+                setModalVisible(!modalVisible);
+              }}>
+              <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                  <Text style={styles.modalText}>Set Countdown Timer</Text>
+                  <TimePicker
+                    textColor={'black'}
+                    value={{hours, minutes}}
+                    onChange={handleChange}
+                  />
+                  <View style={styles.modalBottomButtons}>
+                    <Pressable
+                      style={[styles.button, styles.buttonClose]}
+                      onPress={() => setModalVisible(false)}>
+                      <Text style={styles.textStyle}>Back</Text>
+                    </Pressable>
+                    <Pressable
+                      style={[styles.button, styles.buttonClose]}
+                      onPress={() => {
+                        setModalVisible(!modalVisible);
+                        setTimerVisible(true);
+                      }}>
+                      <Text style={styles.textStyle}>Set Timer</Text>
+                    </Pressable>
+                  </View>
+                </View>
               </View>
+            </Modal>
+          </SafeAreaView>
+          <View style={styles.bottomContainer}>
+            <View style={styles.bottomControls}>
+              <TouchableOpacity onPress={() => setModalVisible(true)}>
+                <Ionicons name="timer-outline" size={90} color="#777777" />
+              </TouchableOpacity>
             </View>
           </View>
-        </Modal>
-      </SafeAreaView>
-      <View style={styles.bottomContainer}>
-        <View style={styles.bottomControls}>
-          {/* <TouchableOpacity onPress={playPause}> */}
-          <TouchableOpacity onPress={() => setModalVisible(true)}>
-            {/* <Ionicons name="ellipsis-horizontal" size={90} color="#777777" /> */}
-            {/* <Ionicons name="time-outline" size={80} color="#777777" /> */}
-            <Ionicons name="timer-outline" size={90} color="#777777" />
-          </TouchableOpacity>
-        </View>
+        </Wrapper>
       </View>
     </SafeAreaView>
   );
@@ -334,6 +375,17 @@ const renderTime = ({remainingTime}) => {
   );
 };
 
+// flex: 1,
+//alignitems: 'center';
+// justifycontent: 'center';
+
+export const Wrapper = styled.View`
+  justify-content: space-between;
+  padding: 20px;
+  align-items: center;
+  flex-direction: column;
+`;
+
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
@@ -347,7 +399,9 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#ccc',
-    fontSize: 10,
+    fontSize: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   value: {
     fontSize: 12,
@@ -388,7 +442,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   imageWrapper: {
-    width: 360,
+    // width: 360,
     height: 450,
     marginBottom: 15,
     shadowColor: '#ccc',
