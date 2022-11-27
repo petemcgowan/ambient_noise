@@ -18,8 +18,8 @@
 		2C5926132921A62D00DADFD0 /* brown_900hz_lc_noise_mini.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C59260F2921A62D00DADFD0 /* brown_900hz_lc_noise_mini.mp3 */; };
 		2C5926142921A62D00DADFD0 /* brown_900hz_lc_noise_mod_mini.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C5926102921A62D00DADFD0 /* brown_900hz_lc_noise_mod_mini.mp3 */; };
 		2CD9D5E5292299730074C5DF /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9D5E3292299730074C5DF /* AppDelegate.mm */; };
-		B0994EA9270483FEEBD2910D /* libPods-ambient_power_native-ambient_power_native_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 457956FBF16077BCD3027B82 /* libPods-ambient_power_native-ambient_power_native_Tests.a */; };
-		FC828DD215061146EEE235FA /* libPods-ambient_power_native.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B2B6939A84C2009EEE41E8C /* libPods-ambient_power_native.a */; };
+		31C57939B902C236FDC6C823 /* libPods-ambient_power_native-ambient_power_native_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D514F6BF56A40D5A504A1839 /* libPods-ambient_power_native-ambient_power_native_Tests.a */; };
+		BEDBBF9A510F990CE5F8C0B1 /* libPods-ambient_power_native.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D73172BE78DF90C067C56E15 /* libPods-ambient_power_native.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,12 +36,11 @@
 		00E356EE1AD99517003FC87E /* ambient_power_native_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ambient_power_native_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* ambient_power_native_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ambient_power_native_Tests.m; sourceTree = "<group>"; };
+		0155E83CA3114F2B732956A7 /* Pods-ambient_power_native-ambient_power_native_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ambient_power_native-ambient_power_native_Tests.release.xcconfig"; path = "Target Support Files/Pods-ambient_power_native-ambient_power_native_Tests/Pods-ambient_power_native-ambient_power_native_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* ambient_power_native.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ambient_power_native.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ambient_power_native/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ambient_power_native/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ambient_power_native/main.m; sourceTree = "<group>"; };
-		2B2B6939A84C2009EEE41E8C /* libPods-ambient_power_native.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ambient_power_native.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B525E973FA3D8AB787802B3 /* Pods-ambient_power_native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ambient_power_native.release.xcconfig"; path = "Target Support Files/Pods-ambient_power_native/Pods-ambient_power_native.release.xcconfig"; sourceTree = "<group>"; };
 		2C0285F32922930B0041AD7C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ambient_power_native/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C5926092921A5DE00DADFD0 /* on2sample.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = on2sample.mp3; path = ../design/audio/on2sample.mp3; sourceTree = "<group>"; };
 		2C59260A2921A5DE00DADFD0 /* off2sample.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = off2sample.mp3; path = ../design/audio/off2sample.mp3; sourceTree = "<group>"; };
@@ -55,11 +54,12 @@
 		2CC60A09291A877F00F6F53E /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Solid.ttf; sourceTree = "<group>"; };
 		2CD9D5E3292299730074C5DF /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = ambient_power_native/AppDelegate.mm; sourceTree = "<group>"; };
 		2CD9D5E4292299730074C5DF /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ambient_power_native/AppDelegate.h; sourceTree = "<group>"; };
-		457956FBF16077BCD3027B82 /* libPods-ambient_power_native-ambient_power_native_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ambient_power_native-ambient_power_native_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4AC049D4205472D13D6C69BA /* Pods-ambient_power_native-ambient_power_native_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ambient_power_native-ambient_power_native_Tests.release.xcconfig"; path = "Target Support Files/Pods-ambient_power_native-ambient_power_native_Tests/Pods-ambient_power_native-ambient_power_native_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		2F52AE241982194CEBEDF09C /* Pods-ambient_power_native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ambient_power_native.release.xcconfig"; path = "Target Support Files/Pods-ambient_power_native/Pods-ambient_power_native.release.xcconfig"; sourceTree = "<group>"; };
+		6134346DAF5ECE554D315971 /* Pods-ambient_power_native.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ambient_power_native.debug.xcconfig"; path = "Target Support Files/Pods-ambient_power_native/Pods-ambient_power_native.debug.xcconfig"; sourceTree = "<group>"; };
+		6341C4DB76DB62E4F1DEF9A2 /* Pods-ambient_power_native-ambient_power_native_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ambient_power_native-ambient_power_native_Tests.debug.xcconfig"; path = "Target Support Files/Pods-ambient_power_native-ambient_power_native_Tests/Pods-ambient_power_native-ambient_power_native_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		D514F6BF56A40D5A504A1839 /* libPods-ambient_power_native-ambient_power_native_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ambient_power_native-ambient_power_native_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D73172BE78DF90C067C56E15 /* libPods-ambient_power_native.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ambient_power_native.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F33D7113CC4208501E890968 /* Pods-ambient_power_native.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ambient_power_native.debug.xcconfig"; path = "Target Support Files/Pods-ambient_power_native/Pods-ambient_power_native.debug.xcconfig"; sourceTree = "<group>"; };
-		F3B78A39EA31E1B24C4905AD /* Pods-ambient_power_native-ambient_power_native_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ambient_power_native-ambient_power_native_Tests.debug.xcconfig"; path = "Target Support Files/Pods-ambient_power_native-ambient_power_native_Tests/Pods-ambient_power_native-ambient_power_native_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0994EA9270483FEEBD2910D /* libPods-ambient_power_native-ambient_power_native_Tests.a in Frameworks */,
+				31C57939B902C236FDC6C823 /* libPods-ambient_power_native-ambient_power_native_Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC828DD215061146EEE235FA /* libPods-ambient_power_native.a in Frameworks */,
+				BEDBBF9A510F990CE5F8C0B1 /* libPods-ambient_power_native.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,8 +128,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				2B2B6939A84C2009EEE41E8C /* libPods-ambient_power_native.a */,
-				457956FBF16077BCD3027B82 /* libPods-ambient_power_native-ambient_power_native_Tests.a */,
+				D73172BE78DF90C067C56E15 /* libPods-ambient_power_native.a */,
+				D514F6BF56A40D5A504A1839 /* libPods-ambient_power_native-ambient_power_native_Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -174,10 +174,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F33D7113CC4208501E890968 /* Pods-ambient_power_native.debug.xcconfig */,
-				2B525E973FA3D8AB787802B3 /* Pods-ambient_power_native.release.xcconfig */,
-				F3B78A39EA31E1B24C4905AD /* Pods-ambient_power_native-ambient_power_native_Tests.debug.xcconfig */,
-				4AC049D4205472D13D6C69BA /* Pods-ambient_power_native-ambient_power_native_Tests.release.xcconfig */,
+				6134346DAF5ECE554D315971 /* Pods-ambient_power_native.debug.xcconfig */,
+				2F52AE241982194CEBEDF09C /* Pods-ambient_power_native.release.xcconfig */,
+				6341C4DB76DB62E4F1DEF9A2 /* Pods-ambient_power_native-ambient_power_native_Tests.debug.xcconfig */,
+				0155E83CA3114F2B732956A7 /* Pods-ambient_power_native-ambient_power_native_Tests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -189,12 +189,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ambient_power_native_Tests" */;
 			buildPhases = (
-				189DEA66C61F0B2452368B7B /* [CP] Check Pods Manifest.lock */,
+				3E10C9C877264AAAB3CB7B7D /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				AFDD5F64CF1327F507790C7C /* [CP] Embed Pods Frameworks */,
-				331BCD6622A0117DC7207193 /* [CP] Copy Pods Resources */,
+				71409A816CF263AB652071DC /* [CP] Embed Pods Frameworks */,
+				26334127596800665AA630E8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -210,14 +210,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ambient_power_native" */;
 			buildPhases = (
-				AD6EDEE54BDAFE19C3F839EA /* [CP] Check Pods Manifest.lock */,
+				D426941C1791EA149370DAEE /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				EA1DBC5D943C86490CA21B93 /* [CP] Embed Pods Frameworks */,
-				5E1DECC1B03BD4AB66AE9341 /* [CP] Copy Pods Resources */,
+				1AE3F3662CB4E560BD36F521 /* [CP] Embed Pods Frameworks */,
+				B3C76570C9A0652404A53876 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -306,7 +306,41 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		189DEA66C61F0B2452368B7B /* [CP] Check Pods Manifest.lock */ = {
+		1AE3F3662CB4E560BD36F521 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ambient_power_native/Pods-ambient_power_native-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ambient_power_native/Pods-ambient_power_native-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ambient_power_native/Pods-ambient_power_native-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		26334127596800665AA630E8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ambient_power_native-ambient_power_native_Tests/Pods-ambient_power_native-ambient_power_native_Tests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ambient_power_native-ambient_power_native_Tests/Pods-ambient_power_native-ambient_power_native_Tests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ambient_power_native-ambient_power_native_Tests/Pods-ambient_power_native-ambient_power_native_Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3E10C9C877264AAAB3CB7B7D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -328,24 +362,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		331BCD6622A0117DC7207193 /* [CP] Copy Pods Resources */ = {
+		71409A816CF263AB652071DC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ambient_power_native-ambient_power_native_Tests/Pods-ambient_power_native-ambient_power_native_Tests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ambient_power_native-ambient_power_native_Tests/Pods-ambient_power_native-ambient_power_native_Tests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ambient_power_native-ambient_power_native_Tests/Pods-ambient_power_native-ambient_power_native_Tests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ambient_power_native-ambient_power_native_Tests/Pods-ambient_power_native-ambient_power_native_Tests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ambient_power_native-ambient_power_native_Tests/Pods-ambient_power_native-ambient_power_native_Tests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ambient_power_native-ambient_power_native_Tests/Pods-ambient_power_native-ambient_power_native_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5E1DECC1B03BD4AB66AE9341 /* [CP] Copy Pods Resources */ = {
+		B3C76570C9A0652404A53876 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -362,7 +396,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ambient_power_native/Pods-ambient_power_native-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AD6EDEE54BDAFE19C3F839EA /* [CP] Check Pods Manifest.lock */ = {
+		D426941C1791EA149370DAEE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -382,40 +416,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AFDD5F64CF1327F507790C7C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ambient_power_native-ambient_power_native_Tests/Pods-ambient_power_native-ambient_power_native_Tests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ambient_power_native-ambient_power_native_Tests/Pods-ambient_power_native-ambient_power_native_Tests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ambient_power_native-ambient_power_native_Tests/Pods-ambient_power_native-ambient_power_native_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EA1DBC5D943C86490CA21B93 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ambient_power_native/Pods-ambient_power_native-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ambient_power_native/Pods-ambient_power_native-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ambient_power_native/Pods-ambient_power_native-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -470,7 +470,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F3B78A39EA31E1B24C4905AD /* Pods-ambient_power_native-ambient_power_native_Tests.debug.xcconfig */;
+			baseConfigurationReference = 6341C4DB76DB62E4F1DEF9A2 /* Pods-ambient_power_native-ambient_power_native_Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -497,7 +497,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4AC049D4205472D13D6C69BA /* Pods-ambient_power_native-ambient_power_native_Tests.release.xcconfig */;
+			baseConfigurationReference = 0155E83CA3114F2B732956A7 /* Pods-ambient_power_native-ambient_power_native_Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -521,7 +521,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F33D7113CC4208501E890968 /* Pods-ambient_power_native.debug.xcconfig */;
+			baseConfigurationReference = 6134346DAF5ECE554D315971 /* Pods-ambient_power_native.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -547,7 +547,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B525E973FA3D8AB787802B3 /* Pods-ambient_power_native.release.xcconfig */;
+			baseConfigurationReference = 2F52AE241982194CEBEDF09C /* Pods-ambient_power_native.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
