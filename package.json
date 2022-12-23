@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "start": "react-native start",
+    "start-reset-cache": "react-native start --reset-cache",
     "android": "react-native run-android --active-arch-only",
     "ios": "react-native run-ios",
     "react-devtools": "react-devtools",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "FULL-project-clean": "react-native-clean-project"
   },
   "dependencies": {
     "@react-native-picker/picker": "^2.4.8",
@@ -21,7 +23,7 @@
     "react-native-sound": "^0.11.2",
     "react-native-splash-screen": "^3.3.0",
     "react-native-svg": "12.3.0",
-    "react-native-vector-icons": "^8.1.0",
+    "react-native-vector-icons": "^9.2.0",
     "react-native-video": "^5.2.1",
     "styled-components": "^5.3.6"
   },
