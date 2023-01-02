@@ -60,12 +60,22 @@ const formatRemainingTime = countDownInSeconds => {
 //   );
 // };
 
-export default function CountdownTimer() {
+export default function CountdownTimer({
+  hours,
+  setHours,
+  minutes,
+  setMinutes,
+  togglePlayback,
+  setTimerVisible,
+}) {
+  const duration = hours * 60 + minutes;
+  console.log('CountdownTimer, duration:' + duration);
+
   return (
     <CountdownCircleTimer
       isPlaying
-      duration={124}
-      size={200}
+      duration={duration}
+      size={190}
       updateInterval={1}
       strokeWidth={18}
       colors={[
@@ -74,13 +84,28 @@ export default function CountdownTimer() {
         '#3C91E6',
         '#9FD356',
         '#342E37',
+        '#AB814A',
         '#FA824C',
         '#4B3B40',
         '#82735C',
         '#9DB17C',
       ]}
+      colorsTime={[
+        duration,
+        (duration / 9) * 8,
+        (duration / 9) * 7,
+        (duration / 9) * 6,
+        (duration / 9) * 5,
+        (duration / 9) * 4,
+        (duration / 9) * 3,
+        (duration / 9) * 2,
+        (duration / 9) * 1,
+        0,
+      ]}
       onComplete={() => {
         console.log('ON_COMPLETE BEFORE RETURN');
+        togglePlayback();
+        setTimerVisible(false);
         return [true, 0];
       }}>
       {({remainingTime, animatedColor}) => (
