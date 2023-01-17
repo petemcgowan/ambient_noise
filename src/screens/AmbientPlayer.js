@@ -1,6 +1,6 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {Animated} from 'react-native';
-import Video from 'react-native-video';
+import React, { useEffect, useRef, useState } from "react";
+// import {Animated} from 'react-native';
+// import Video from 'react-native-video';
 
 import {
   SafeAreaView,
@@ -8,15 +8,15 @@ import {
   StyleSheet,
   ImageBackground,
   Dimensions,
-} from 'react-native';
-import Sound from 'react-native-sound';
+} from "react-native";
+import Sound from "react-native-sound";
 
-import sounds, {knockOnSound, knockOffSound} from '../model/data';
-import {LogBox} from 'react-native';
-import SoundsSlider from '../components/SoundsSlider';
+import sounds, { knockOnSound, knockOffSound } from "../model/data";
+import { LogBox } from "react-native";
+import SoundsSlider from "../components/SoundsSlider";
 
-Sound.setCategory('Playback');
-const {width, height} = Dimensions.get('window');
+Sound.setCategory("Playback");
+const { width, height } = Dimensions.get("window");
 // LogBox.ignoreLogs(['Sending']);
 // LogBox.ignoreAllLogs();
 
@@ -31,9 +31,9 @@ const AmbientPlayer = () => {
 
   useEffect(() => {
     console.log(
-      'AmbientPlayer useEffect window width:' + width + '/height:' + height,
+      "AmbientPlayer useEffect window width:" + width + "/height:" + height
     );
-    console.log('SoundsSlider: useEffect');
+    console.log("SoundsSlider: useEffect");
   }, []);
 
   // const dynamicStyles = StyleSheet.create({

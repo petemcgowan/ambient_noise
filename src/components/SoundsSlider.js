@@ -17,7 +17,7 @@ import styled from "styled-components/native";
 import CountdownTimer from "./CountdownTimer";
 import TimerControls from "./TimerControls";
 // import SoundsSlider from './SoundsSlider';
-import VideoBackground from "./VideoBackground";
+// import VideoBackground from "./VideoBackground";
 
 export default function SoundsSlider({
   playing,
@@ -40,33 +40,46 @@ export default function SoundsSlider({
 
   useEffect(() => {
     console.log("SoundsSlider useEffect called");
-    console.log(
-      "SoundsSlider useEffect window width:" + width + "/height:" + height
-    );
-    console.log(
-      "SoundsSlider useEffect, videoBackground:" +
-        sounds[songIndex].videoBackground +
-        ", songIndex:" +
-        songIndex
-    );
+    // console.log(
+    //   "SoundsSlider useEffect window width:" + width + "/height:" + height
+    // );
+    // console.log(
+    //   "SoundsSlider useEffect, videoBackground:" +
+    //     sounds[songIndex].videoBackground +
+    //     ", songIndex:" +
+    //     songIndex
+    // );
     scrollX.addListener(({ value }) => {
-      console.log("scrollX Listener, value:" + value + ", width:" + width);
+      // console.log("scrollX Listener, value:" + value + ", width:" + width);
       const index = Math.round(value / width);
-      if (index !== songIndex) {
-        if (sounds[songIndex].playingSound._playing) {
-          // if previous sound if playing, stop it
-          sounds[songIndex].playingSound.stop();
-          // play the newly selected sound
-          sounds[index].playingSound.play();
-        }
+      if (index === sounds.length) {
+        // end of slides
+        console.log("index is now equal to FOUR");
 
-        console.log(
-          "SCROLLX:Setting song index on swipe():" +
-            index +
-            ", songIndex was:" +
-            songIndex
-        );
-        setSongIndex(index);
+        // scroll back to the top
+        soundsSliderRef.current.scrollToOffset({ offset: 0, animated: true });
+        // setSongIndex(0);
+      } else {
+        if (index !== songIndex) {
+          console.log(
+            "songIndex:" + songIndex + " no longer equals index:" + index
+          );
+
+          if (sounds[songIndex].playingSound._playing) {
+            // if previous sound if playing, stop it
+            sounds[songIndex].playingSound.stop();
+            // play the newly selected sound
+            sounds[index].playingSound.play();
+          }
+
+          console.log(
+            "SCROLLX:Setting song index on swipe():" +
+              index +
+              ", songIndex was:" +
+              songIndex
+          );
+          setSongIndex(index);
+        }
       }
     });
 
@@ -128,7 +141,7 @@ export default function SoundsSlider({
   };
 
   const onVideoLoaded = () => {
-    console.log("onVideoLoaded has been called");
+    // console.log("onVideoLoaded has been called");
   };
 
   const renderSounds = ({ index, item }) => {
@@ -148,12 +161,14 @@ export default function SoundsSlider({
             onError={onVideoError}
             muted={true}
             repeat={true}
+            buffered={true}
             onLoad={onVideoLoaded}
             paused={!playing}
             resizeMode={"cover"}
-            rate={0.7}
+            rate={0.5}
             // ignoreSilentSwitch={'obey'}
           />
+
           <View style={styles.powerControls}>
             {/* <View style={styles.powerControls}> */}
             <TouchableOpacity
