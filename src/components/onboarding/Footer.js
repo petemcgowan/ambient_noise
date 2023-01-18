@@ -1,7 +1,7 @@
-import React from 'react';
-import {View, useWindowDimensions} from 'react-native';
+import React from "react";
+import { View, useWindowDimensions } from "react-native";
 
-import RoundedButton from './RoundedButton';
+import RoundedButton from "./RoundedButton";
 
 const Footer = ({
   backgroundColor,
@@ -17,14 +17,15 @@ const Footer = ({
   return (
     <View
       style={{
-        flexDirection: 'row',
-        justifyContent: leftButtonLabel ? 'space-between' : 'flex-end',
+        flexDirection: "row",
+        justifyContent: leftButtonLabel ? "space-between" : "flex-end",
         height: HEIGHT,
         backgroundColor,
-        opacity: 0.6,
-        alignItems: 'center',
+        opacity: 0.7,
+        alignItems: "center",
         paddingHorizontal: FOOTER_PADDING,
-      }}>
+      }}
+    >
       {leftButtonLabel && (
         <RoundedButton label={leftButtonLabel} onPress={leftButtonPress} />
       )}

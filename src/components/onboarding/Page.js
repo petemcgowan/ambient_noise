@@ -4,8 +4,8 @@ import { View, Text, StyleSheet, Dimensions, Image } from "react-native";
 import Video from "react-native-video";
 
 const { width, height } = Dimensions.get("screen");
-const VIDEO_HEIGHT = height * 0.67;
-const VIDEO_WIDTH = width * 0.67;
+const VIDEO_HEIGHT = height * 0.7;
+const VIDEO_WIDTH = width * 0.7;
 
 const Page = ({
   backgroundColor,
@@ -26,7 +26,8 @@ const Page = ({
     //     backgroundColor,
     //   }}
     // >
-    <View style={styles.slideContainer}>
+    <View style={[styles.slideContainer, { backgroundColor: backgroundColor }]}>
+      {!!imageLink && <Image style={styles.video} source={imageLink} />}
       {!!videoLink && (
         <Video
           ref={videoRef}
@@ -40,10 +41,11 @@ const Page = ({
           resizeMode="cover"
         />
       )}
-      {!!imageLink && <Image style={styles.video} source={imageLink} />}
       <View style={styles.textBoxes}>
-        <Text style={styles.basicFunctionText}>{title}</Text>
-        <Text style={styles.explanationText}>{description}</Text>
+        <Text>
+          <Text style={[styles.basicFunctionText]}>{title} - </Text>
+          <Text style={styles.explanationText}>{description}</Text>
+        </Text>
       </View>
     </View>
     // </View>
@@ -54,27 +56,29 @@ const styles = StyleSheet.create({
   slideContainer: {
     flex: 1,
     justifyContent: "center",
-    backgroundColor: "#ffc93c",
-    // backgroundColor: "#ecf0f1",
+    // backgroundColor: "#ffc93c",
   },
   basicFunctionText: {
     fontWeight: "bold",
+    fontSize: 20,
   },
   explanationText: {
-    color: "#bbb",
-    padding: 20,
+    color: "black",
+    padding: 10,
+    fontSize: 18,
   },
   video: {
     alignSelf: "center",
     width: VIDEO_WIDTH,
     height: VIDEO_HEIGHT,
-    marginBottom: 30,
+    marginBottom: 20,
     borderRadius: 40,
   },
   textBoxes: {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+    margin: 3,
   },
   // previous
   innerContainer: {
