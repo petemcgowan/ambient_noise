@@ -1,29 +1,29 @@
-import React from 'react';
-import {Text, StyleSheet} from 'react-native';
-import {CountdownCircleTimer} from 'react-native-countdown-circle-timer';
-import {Animated} from 'react-native';
+import React from "react";
+import { Text, StyleSheet } from "react-native";
+import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
+import { Animated } from "react-native";
 
-const formatRemainingTime = countDownInSeconds => {
+const formatRemainingTime = (countDownInSeconds) => {
   // const minutes = Math.floor((time % 3600) / 60);
   // const seconds = time % 60;
   if (countDownInSeconds === 0) {
-    return '0:00';
+    return "0:00";
   }
   // const days = Math.floor(countDownInSeconds / (1000 * 60 * 60 * 24));
   // const hours = Math.floor(
   //   (countDownInSeconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
   // );
   const minutes = Math.floor(
-    (countDownInSeconds % (1000 * 60 * 60)) / (1000 * 60),
+    (countDownInSeconds % (1000 * 60 * 60)) / (1000 * 60)
   );
-  console.log('countDownInSeconds:' + countDownInSeconds);
+  console.log("countDownInSeconds:" + countDownInSeconds);
   const seconds = Math.floor((countDownInSeconds % (1000 * 60)) / 1000);
-  console.log('seconds:' + seconds);
+  console.log("seconds:" + seconds);
 
   const minutesMethod2 = Math.floor((countDownInSeconds % 3600) / 60);
-  console.log('minutesMethod2:' + minutesMethod2);
+  console.log("minutesMethod2:" + minutesMethod2);
   const secondsMethod2 = countDownInSeconds % 60;
-  console.log('secondsMethod2:' + secondsMethod2);
+  console.log("secondsMethod2:" + secondsMethod2);
 
   // const result = time.toLocaleDateString('en-GB', {
   //   // you can use undefined as first argument
@@ -41,7 +41,7 @@ const formatRemainingTime = countDownInSeconds => {
   } else {
     secondString = seconds;
   }
-  console.log('secondString:' + secondString);
+  console.log("secondString:" + secondString);
 
   // return `${minutes}:${seconds}`;
   return `${minutesMethod2}:${secondsMethod2}`;
@@ -67,28 +67,29 @@ export default function CountdownTimer({
   setMinutes,
   togglePlayback,
   setTimerVisible,
+  timerControlsFontColor,
 }) {
   const duration = hours * 60 + minutes;
-  console.log('CountdownTimer, duration:' + duration);
+  console.log("CountdownTimer, duration:" + duration);
 
   return (
     <CountdownCircleTimer
       isPlaying
       duration={duration}
-      size={190}
+      size={165}
       updateInterval={1}
       strokeWidth={18}
       colors={[
-        '#9CDE9F',
-        '#D1F5BE',
-        '#3C91E6',
-        '#9FD356',
-        '#342E37',
-        '#AB814A',
-        '#FA824C',
-        '#4B3B40',
-        '#82735C',
-        '#9DB17C',
+        "#9CDE9F",
+        "#D1F5BE",
+        "#3C91E6",
+        "#9FD356",
+        "#342E37",
+        "#AB814A",
+        "#FA824C",
+        "#4B3B40",
+        "#82735C",
+        "#9DB17C",
       ]}
       colorsTime={[
         duration,
@@ -103,20 +104,23 @@ export default function CountdownTimer({
         0,
       ]}
       onComplete={() => {
-        console.log('ON_COMPLETE BEFORE RETURN');
+        console.log("ON_COMPLETE BEFORE RETURN");
         togglePlayback();
         setTimerVisible(false);
         return [true, 0];
-      }}>
-      {({remainingTime, animatedColor}) => (
-        <Animated.Text style={{color: animatedColor}}>
+      }}
+    >
+      {({ remainingTime, animatedColor }) => (
+        <Animated.Text style={{ color: animatedColor }}>
           {/* <View style={styles.timer}> */}
           {/* <View style={styles.timerTextContainer}>
               <Text style={styles.text}>Remaining</Text>
               <Text style={styles.text}>time</Text>
             </View> */}
           {/* <View style={styles.value}> */}
-          <Text style={styles.text}>{formatRemainingTime(remainingTime)}</Text>
+          <Text style={[styles.text, { color: timerControlsFontColor }]}>
+            {formatRemainingTime(remainingTime)}
+          </Text>
           {/* <Text style={styles.text}>{renderTime}</Text> */}
           {/* </View> */}
           {/* </View> */}
@@ -137,13 +141,13 @@ const styles = StyleSheet.create({
   timer: {
     // fontFamily: "Montserrat";
     // flexDirection: column;
-    alignItems: 'center',
+    alignItems: "center",
   },
   text: {
-    color: '#ccc',
-    fontSize: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
+    fontSize: 37,
+    fontWeight: "bold",
+    alignItems: "center",
+    justifyContent: "center",
   },
   // value: {
   //   fontSize: 30,

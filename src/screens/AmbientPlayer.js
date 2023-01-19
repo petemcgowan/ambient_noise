@@ -23,7 +23,7 @@ const { width, height } = Dimensions.get("window");
 const AmbientPlayer = () => {
   const [timerVisible, setTimerVisible] = useState(false);
 
-  const [playing, setPlaying] = useState(true);
+  const [playing, setPlaying] = useState(false);
   const [played, hasPlayed] = useState(false);
 
   knockOnSound.setVolume(0.5);

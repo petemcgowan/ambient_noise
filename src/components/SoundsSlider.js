@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import Video from "react-native-video";
 const { width, height } = Dimensions.get("window");
-import styled from "styled-components/native";
+// import styled from "styled-components/native";
 
 import CountdownTimer from "./CountdownTimer";
 import TimerControls from "./TimerControls";
@@ -141,7 +141,7 @@ export default function SoundsSlider({
   };
 
   const onVideoLoaded = () => {
-    // console.log("onVideoLoaded has been called");
+    console.log("onVideoLoaded has been called");
   };
 
   const renderSounds = ({ index, item }) => {
@@ -156,6 +156,7 @@ export default function SoundsSlider({
           <Video
             source={sounds[songIndex].videoBackground}
             // poster={sounds[songIndex].videoPoster}
+            // poster={sounds[songIndex].videoPosterRemote}
             posterResizeMode={"cover"}
             style={dynamicStyles.backgroundVideo}
             onError={onVideoError}
@@ -218,6 +219,9 @@ export default function SoundsSlider({
                   setMinutes={setMinutes}
                   togglePlayback={togglePlayback}
                   setTimerVisible={setTimerVisible}
+                  timerControlsFontColor={
+                    sounds[songIndex].timerControlsFontColor
+                  }
                 />
               </View>
             ) : (
@@ -238,6 +242,10 @@ export default function SoundsSlider({
             setMinutes={setMinutes}
             playing={playing}
             togglePlayback={togglePlayback}
+            timerDialogBackgroundColor={
+              sounds[songIndex].timerDialogBackgroundColor
+            }
+            timerDialogFontColor={sounds[songIndex].timerDialogFontColor}
           />
         </View>
       </View>
