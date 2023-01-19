@@ -15,6 +15,8 @@ export default function TimerControls({
   setMinutes,
   playing,
   togglePlayback,
+  timerDialogBackgroundColor,
+  timerDialogFontColor,
 }) {
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -39,8 +41,12 @@ export default function TimerControls({
           }}
         >
           <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              {/* <Text style={styles.modalText}>Set Countdown Timer</Text> */}
+            <View
+              style={[
+                styles.modalView,
+                { backgroundColor: timerDialogBackgroundColor },
+              ]}
+            >
               <TimePicker
                 textColor={"black"}
                 value={{ hours, minutes }}
@@ -48,14 +54,26 @@ export default function TimerControls({
               />
               <View style={styles.modalBottomButtons}>
                 <Pressable
-                  style={[styles.button, styles.buttonClose]}
+                  style={[
+                    styles.button,
+                    styles.buttonClose,
+                    { backgroundColor: timerDialogFontColor },
+                  ]}
                   onPress={() => setModalVisible(false)}
                 >
                   <Text style={styles.textStyle}>Back</Text>
                 </Pressable>
                 <Pressable
-                  style={[styles.button, styles.buttonClose]}
+                  style={[
+                    styles.button,
+                    styles.buttonClose,
+                    { backgroundColor: timerDialogFontColor },
+                  ]}
                   onPress={() => {
+                    if (hours === 0 && minutes === 0) {
+                      setModalVisible(false);
+                      return; // they haven't selected a time aka do nothing
+                    }
                     setModalVisible(!modalVisible);
                     setTimerVisible(true);
                     if (!playing) {
@@ -102,14 +120,14 @@ const styles = StyleSheet.create({
   },
   buttonClose: {
     // backgroundColor: 'rgba(122, 158, 199, 1)',
-    backgroundColor: "rgba(255, 255, 255, 1)",
+    // backgroundColor: "rgba(255, 255, 255, 1)",
     // backgroundColor: '#393E46',
     // borderWidth: 1,
   },
   modalView: {
     marginTop: 80,
     // backgroundColor: 'rgba(122, 158, 199, 1)',
-    backgroundColor: "rgba(255, 255, 255, 1)",
+    // backgroundColor: "rgba(255, 255, 255, 1)",
     // width: '80%',
     borderRadius: 20,
     padding: 20,
@@ -130,5 +148,6 @@ const styles = StyleSheet.create({
   textStyle: {
     color: "#777777",
     textAlign: "center",
+    fontSize: 22,
   },
 });
