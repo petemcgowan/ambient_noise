@@ -47,7 +47,7 @@ const Onboarding = () => {
             title="Pink Noise"
             videoLink={null}
             imageLink={pinkNoiseImage}
-            description="Consists of all frequences that are audible to the human ear.  Energy is more intense at lower frequences, which makes it deeper than white noise"
+            description="Consists of all frequences that are audible to the human ear.  Energy is more intense at lower frequences"
           />
           <Footer
             backgroundColor="#07689f"
