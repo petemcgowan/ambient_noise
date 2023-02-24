@@ -33,6 +33,7 @@ export default function SoundsSlider({
   const soundsSliderRef = useRef(null);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
 
   sounds[songIndex].playingSound.setVolume(0.9);
   sounds[songIndex].playingSound.setNumberOfLoops(-1);
@@ -217,8 +218,13 @@ export default function SoundsSlider({
                   setHours={setHours}
                   minutes={minutes}
                   setMinutes={setMinutes}
+                  seconds={seconds}
+                  setSeconds={setSeconds}
                   togglePlayback={togglePlayback}
                   setTimerVisible={setTimerVisible}
+                  timerControlsBackgroundColor={
+                    sounds[songIndex].timerControlsBackgroundColor
+                  }
                   timerControlsFontColor={
                     sounds[songIndex].timerControlsFontColor
                   }
@@ -240,6 +246,8 @@ export default function SoundsSlider({
             setHours={setHours}
             minutes={minutes}
             setMinutes={setMinutes}
+            seconds={seconds}
+            setSeconds={setSeconds}
             playing={playing}
             togglePlayback={togglePlayback}
             timerDialogBackgroundColor={
