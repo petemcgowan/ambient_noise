@@ -119,7 +119,7 @@ const sounds = [
       "https://ambientnoise.s3.amazonaws.com/videoPosters/WindowPlaneView.jpg",
     timerDialogBackgroundColor: "#4d94ca",
     timerDialogFontColor: "#afb7ad",
-    timerControlsFontColor: "#4d94ca",
+    timerControlsFontColor: "#afb7ad",
     playingSound: new Sound(
       "brown_900hz_lc_noise_mini.mp3",
       Sound.MAIN_BUNDLE,

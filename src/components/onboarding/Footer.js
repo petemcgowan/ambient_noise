@@ -11,7 +11,7 @@ const Footer = ({
   rightButtonPress = false,
 }) => {
   const windowWidth = useWindowDimensions().width;
-  const HEIGHT = windowWidth * 0.21;
+  const HEIGHT = windowWidth * 0.15;
   const FOOTER_PADDING = windowWidth * 0.1;
 
   return (
