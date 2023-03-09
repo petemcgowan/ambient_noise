@@ -1,4 +1,4 @@
-package com.ambient_power_native.newarchitecture.modules;
+package com.buachaillmaith.ambient_power_native.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

@@ -1,4 +1,4 @@
-package com.ambient_power_native.newarchitecture;
+package com.buachaillmaith.ambient_power_native.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.ambient_power_native.BuildConfig;
-import com.ambient_power_native.newarchitecture.components.MainComponentsRegistry;
-import com.ambient_power_native.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.buachaillmaith.ambient_power_native.BuildConfig;
+import com.buachaillmaith.ambient_power_native.newarchitecture.components.MainComponentsRegistry;
+import com.buachaillmaith.ambient_power_native.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

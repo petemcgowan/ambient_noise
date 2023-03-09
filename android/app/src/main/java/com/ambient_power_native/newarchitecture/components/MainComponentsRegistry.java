@@ -1,4 +1,4 @@
-package com.ambient_power_native.newarchitecture.components;
+package com.buachaillmaith.ambient_power_native.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

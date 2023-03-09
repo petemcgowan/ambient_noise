@@ -1,4 +1,4 @@
-package com.ambient_power_native;
+package com.buachaillmaith.ambient_power_native;
 
 import android.os.Bundle; // for react-native-splash-screen
 
