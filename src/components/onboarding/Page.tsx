@@ -1,4 +1,3 @@
-import { Feather as Icon } from '@expo/vector-icons'
 import React from 'react'
 import { View, Text, StyleSheet, Dimensions, Image } from 'react-native'
 import Video from 'react-native-video'
@@ -7,6 +6,15 @@ const { width, height } = Dimensions.get('screen')
 const VIDEO_HEIGHT = height * 0.7
 const VIDEO_WIDTH = width * 0.7
 
+interface PageProps {
+    backgroundColor: string
+    color: string
+    title: string
+    videoLink: string | null
+    imageLink: string | null
+    description: string
+}
+
 const Page = ({
     backgroundColor,
     color,
@@ -14,19 +22,10 @@ const Page = ({
     videoLink,
     imageLink,
     description,
-}) => {
+}: PageProps) => {
     const videoRef = React.useRef(null)
-    // const videoToPlay = require('../../../assets/videos/onboarding/1_SelectUnits.mp4');
 
     return (
-        // <View
-        //   style={{
-        //     flex: 1,
-        //     justifyContent: "center",
-        //     alignItems: "center",
-        //     backgroundColor,
-        //   }}
-        // >
         <View
             style={[
                 styles.slideContainer,
@@ -66,7 +65,6 @@ const styles = StyleSheet.create({
     slideContainer: {
         flex: 1,
         justifyContent: 'center',
-        // backgroundColor: "#ffc93c",
     },
     basicFunctionText: {
         fontWeight: 'bold',
@@ -77,10 +75,6 @@ const styles = StyleSheet.create({
     description: {
         padding: 5,
         fontSize: 18,
-
-        // fontFamily: 'San Francisco',
-
-        // fontFamily: 'Roboto',
         fontFamily: 'Helvetica Neue',
     },
     video: {
@@ -95,20 +89,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         margin: 3,
-    },
-    // previous
-    innerContainer: {
-        alignItems: 'center',
-        backgroundColor: 'transparent',
-        flex: 1,
-        justifyContent: 'center',
-    },
-    innerBackground: {
-        ...StyleSheet.absoluteFillObject,
-        backgroundColor: 'black',
-    },
-    backgroundViewWrapper: {
-        // ...StyleSheet.absoluteFillObject,
     },
 })
 

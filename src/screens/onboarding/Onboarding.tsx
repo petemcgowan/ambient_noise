@@ -18,7 +18,7 @@ const Onboarding = () => {
     const pagerRef = useRef(null)
     const navigation = useNavigation()
 
-    const handlePageChange = (pageNumber) => {
+    const handlePageChange = (pageNumber: number) => {
         pagerRef.current.setPage(pageNumber)
     }
 
