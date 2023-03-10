@@ -9,25 +9,22 @@ import SplashScreen from 'react-native-splash-screen'
 import CentralNavigation from './components/CentralNavigation'
 
 const App = () => {
-    console.log('App:start')
-    console.log('***Loading Fonts***')
-    Ionicons.loadFont()
+  console.log('App:start')
+  console.log('***Loading Fonts***')
+  Ionicons.loadFont()
 
-    useEffect(() => {
-        console.log('App:useEffect')
-        SplashScreen.hide()
-    }, [])
+  useEffect(() => {
+    console.log('App:useEffect')
+    SplashScreen.hide()
+  }, [])
 
-    return (
-        <Provider store={store}>
-            <PersistGate
-                loading={<Text>Loading...</Text>}
-                persistor={persistor}
-            >
-                <CentralNavigation />
-            </PersistGate>
-        </Provider>
-    )
+  return (
+    <Provider store={store}>
+      <PersistGate loading={<Text>Loading...</Text>} persistor={persistor}>
+        <CentralNavigation />
+      </PersistGate>
+    </Provider>
+  )
 }
 
 export default App

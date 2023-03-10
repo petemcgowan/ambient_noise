@@ -13,36 +13,33 @@ Sound.setCategory('Playback')
 const { width, height } = Dimensions.get('window')
 
 const AmbientPlayer = () => {
-    const [timerVisible, setTimerVisible] = useState(false)
+  const [timerVisible, setTimerVisible] = useState(false)
 
-    const [playing, setPlaying] = useState(false)
+  const [playing, setPlaying] = useState(false)
 
-    const dispatch = useDispatch()
-    const { updateHasSeenIntro } = bindActionCreators(actionCreators, dispatch)
+  const dispatch = useDispatch()
+  const { updateHasSeenIntro } = bindActionCreators(actionCreators, dispatch)
 
-    knockOnSound.setVolume(0.5)
-    knockOffSound.setVolume(0.5)
+  knockOnSound.setVolume(0.5)
+  knockOffSound.setVolume(0.5)
 
-    useEffect(() => {
-        // Has seen intro, now turn off onboarding
-        updateHasSeenIntro(true)
-        console.log(
-            'AmbientPlayer useEffect window width:' +
-                width +
-                '/height:' +
-                height
-        )
-        console.log('SoundsSlider: useEffect')
-    }, [])
-
-    return (
-        <SoundsSlider
-            playing={playing}
-            setPlaying={setPlaying}
-            timerVisible={timerVisible}
-            setTimerVisible={setTimerVisible}
-        />
+  useEffect(() => {
+    // Has seen intro, now turn off onboarding
+    updateHasSeenIntro(true)
+    console.log(
+      'AmbientPlayer useEffect window width:' + width + '/height:' + height
     )
+    console.log('SoundsSlider: useEffect')
+  }, [])
+
+  return (
+    <SoundsSlider
+      playing={playing}
+      setPlaying={setPlaying}
+      timerVisible={timerVisible}
+      setTimerVisible={setTimerVisible}
+    />
+  )
 }
 
 export default AmbientPlayer
