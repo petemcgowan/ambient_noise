@@ -11,7 +11,7 @@ import { TouchableOpacity, Modal, Pressable, Alert } from 'react-native'
 import { TimePicker } from 'react-native-simple-time-picker'
 import { Picker, PickerColumn, PickerItem } from 'react-native-picky'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import Utils from '../components/Utils'
+import Utils from './Utils'
 
 const { width } = Dimensions.get('window')
 
@@ -26,8 +26,21 @@ const hourOptions = Utils.selectionDropDownRange(0, 23).map(
     (hour) => hour.value
 )
 
+interface TimerControlsProps {
+    setTimerVisible: (timerVisible: boolean) => void
+    hours: number
+    setHours: (hours: number) => void
+    minutes: number
+    setMinutes: (minutes: number) => void
+    seconds: number
+    setSeconds: (seconds: number) => void
+    playing: boolean
+    togglePlayback: () => void
+    timerDialogBackgroundColor: string
+    timerDialogFontColor: string
+}
+
 export default function TimerControls({
-    timerVisible,
     setTimerVisible,
     hours,
     setHours,
@@ -39,13 +52,13 @@ export default function TimerControls({
     togglePlayback,
     timerDialogBackgroundColor,
     timerDialogFontColor,
-}) {
+}: TimerControlsProps) {
     const [modalVisible, setModalVisible] = useState(false)
 
     const handleChange = (value: {
-        hours: number,
-        minutes: number,
-        seconds: number,
+        hours: number
+        minutes: number
+        seconds: number
     }) => {
         console.log('value:' + JSON.stringify(value))
         setHours(value.hours)
@@ -61,11 +74,6 @@ export default function TimerControls({
         )
     }
 
-    // console.log(
-    //     'hours:' + hours,
-    //     ', minutes:' + minutes + ', seconds:' + seconds
-    // )
-
     return (
         <View>
             <SafeAreaView>
@@ -78,7 +86,7 @@ export default function TimerControls({
                         setModalVisible(!modalVisible)
                     }}
                 >
-                    <View style={styles.centeredView}>
+                    <View>
                         <View
                             style={[
                                 styles.modalView,
@@ -108,7 +116,7 @@ export default function TimerControls({
                                     <PickerColumn
                                         selectedValue={hours}
                                         onChange={(event) =>
-                                            setHours(event.value.toString())
+                                            setHours(+event.value.toString())
                                         }
                                     >
                                         {hourOptions.map((hourValue) => (
@@ -122,7 +130,7 @@ export default function TimerControls({
                                     <PickerColumn
                                         selectedValue={minutes}
                                         onChange={(event) =>
-                                            setMinutes(event.value.toString())
+                                            setMinutes(+event.value.toString())
                                         }
                                     >
                                         {minuteOptions.map((minuteValue) => (
@@ -136,7 +144,7 @@ export default function TimerControls({
                                     <PickerColumn
                                         selectedValue={seconds}
                                         onChange={(event) =>
-                                            setSeconds(event.value.toString())
+                                            setSeconds(+event.value.toString())
                                         }
                                     >
                                         {secondOptions.map((secondValue) => (
@@ -234,17 +242,9 @@ const styles = StyleSheet.create({
         padding: 10,
         elevation: 2,
     },
-    buttonClose: {
-        // backgroundColor: 'rgba(122, 158, 199, 1)',
-        // backgroundColor: "rgba(255, 255, 255, 1)",
-        // backgroundColor: '#393E46',
-        // borderWidth: 1,
-    },
+    buttonClose: {},
     modalView: {
         marginTop: 80,
-        // backgroundColor: 'rgba(122, 158, 199, 1)',
-        // backgroundColor: "rgba(255, 255, 255, 1)",
-        // width: '80%',
         borderRadius: 20,
         padding: 20,
         alignItems: 'center',
