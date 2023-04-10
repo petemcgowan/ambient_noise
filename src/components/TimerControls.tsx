@@ -36,6 +36,8 @@ interface TimerControlsProps {
   setSeconds: (seconds: number) => void
   playing: boolean
   togglePlayback: () => void
+  intentionalVideoPlay: boolean
+  setIntentionalVideoPlay: (intentionalVideoPlay: boolean) => void
   timerDialogBackgroundColor: string
   timerDialogFontColor: string
 }
@@ -50,6 +52,8 @@ export default function TimerControls({
   setSeconds,
   playing,
   togglePlayback,
+  intentionalVideoPlay,
+  setIntentionalVideoPlay,
   timerDialogBackgroundColor,
   timerDialogFontColor,
 }: TimerControlsProps) {
@@ -60,18 +64,9 @@ export default function TimerControls({
     minutes: number
     seconds: number
   }) => {
-    console.log('value:' + JSON.stringify(value))
     setHours(value.hours)
     setMinutes(value.minutes)
     setSeconds(value.seconds)
-    console.log(
-      'value.hours' +
-        value.hours +
-        ', value.minutes:' +
-        value.minutes +
-        ', value.seconds:' +
-        value.seconds
-    )
   }
 
   return (
@@ -167,7 +162,6 @@ export default function TimerControls({
                   ]}
                   onPress={() => {
                     if (hours === 0 && minutes === 0 && seconds === 0) {
-                      console.log("They haven't selected a time aka do nothing")
                       setModalVisible(false)
                       return
                     }
@@ -187,9 +181,36 @@ export default function TimerControls({
       </SafeAreaView>
       <View style={styles.bottomContainer}>
         <View style={styles.bottomControls}>
-          <TouchableOpacity onPress={() => setModalVisible(true)}>
-            <Ionicons name="timer-outline" size={90} color="#777777" />
-          </TouchableOpacity>
+          <View style={{ width: width * 0.1 }}></View>
+          <View
+            style={{
+              width: width * 0.4,
+              alignItems: 'center',
+            }}
+          >
+            <TouchableOpacity onPress={() => setModalVisible(true)}>
+              <Ionicons name="timer-outline" size={90} color="#777777" />
+            </TouchableOpacity>
+          </View>
+          <View
+            style={{
+              width: width * 0.4,
+              alignItems: 'center',
+            }}
+          >
+            <TouchableOpacity
+              onPress={() => setIntentionalVideoPlay(!intentionalVideoPlay)}
+            >
+              <Ionicons
+                name="videocam-outline"
+                size={90}
+                color={
+                  intentionalVideoPlay ? 'rgba(0, 255, 0, 0.75)' : '#777777'
+                }
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={{ width: width * 0.1 }}></View>
         </View>
       </View>
     </View>
