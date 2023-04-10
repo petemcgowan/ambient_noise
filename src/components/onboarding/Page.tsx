@@ -8,6 +8,7 @@ const VIDEO_WIDTH = width * 0.7
 
 interface PageProps {
   backgroundColor: string
+  // pageNumber: number
   color: string
   title: string
   videoLink: string | null
@@ -17,6 +18,7 @@ interface PageProps {
 
 const Page = ({
   backgroundColor,
+  // pageNumber,
   color,
   title,
   videoLink,
@@ -24,17 +26,20 @@ const Page = ({
   description,
 }: PageProps) => {
   const videoRef = React.useRef(null)
-
+  // console.log('pageNumber:' + pageNumber)
+  // console.log(
+  //   'videoPlaying should be:' + (pageNumber === 3 || pageNumber === 4)
+  // )
   return (
     <View style={[styles.slideContainer, { backgroundColor: backgroundColor }]}>
       {!!imageLink && <Image style={styles.video} source={imageLink} />}
       {!!videoLink && (
         <Video
           ref={videoRef}
-          muted={true}
+          muted={false}
           rate={0.8}
           repeat={true}
-          shouldPlay
+          // shouldPlay={false}
           paused={false}
           style={styles.video}
           source={videoLink}
@@ -70,7 +75,9 @@ const styles = StyleSheet.create({
   description: {
     padding: 5,
     fontSize: 18,
-    fontFamily: 'Helvetica Neue',
+    // fontFamily: 'Effra Bold',
+    // fontWeight: '400',
+    // fontFamily: 'Effra Std Rg',
   },
   video: {
     alignSelf: 'center',

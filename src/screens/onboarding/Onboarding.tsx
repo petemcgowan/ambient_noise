@@ -1,6 +1,6 @@
+import React, { useRef, useState } from 'react'
 import ViewPager from '@react-native-community/viewpager'
 import { useNavigation } from '@react-navigation/native'
-import React, { useRef } from 'react'
 import { View } from 'react-native'
 
 import Footer from '../../components/onboarding/Footer'
@@ -11,15 +11,17 @@ import Page from '../../components/onboarding/Page'
 const launchScreenImage = require('../../../assets/images/onboarding/launch_screen.png')
 const pinkNoiseImage = require('../../../assets/images/onboarding/1_PinkNoise2.png')
 const brownNoiseImage = require('../../../assets/images/onboarding/2_BrownNoise2.png')
-const useHelpVideo = require('../../../assets/videos/onboarding/3_HowToUse.mp4')
-const getResultsVideo = require('../../../assets/videos/onboarding/4_HowToTimer.mp4')
+const howToUseVideo = require('../../../assets/videos/onboarding/3_HowToUse.mp4')
+const howToTimerVideo = require('../../../assets/videos/onboarding/4_HowToTimer.mp4')
 
 const Onboarding = () => {
   const pagerRef = useRef(null)
   const navigation = useNavigation()
+  // const [pageNumber, setPageNumber] = useState(0)
 
   const handlePageChange = (pageNumber: number) => {
     pagerRef.current.setPage(pageNumber)
+    // setPageNumber(pageNumber)
   }
 
   return (
@@ -28,6 +30,7 @@ const Onboarding = () => {
         <View key="1">
           <Page
             backgroundColor="#339c5e"
+            // pageNumber={pageNumber}
             color="white"
             title="Welcome to Ambient Noise!"
             videoLink={null}
@@ -45,6 +48,7 @@ const Onboarding = () => {
         <View key="2">
           <Page
             backgroundColor="#339c5e"
+            // pageNumber={pageNumber}
             color="pink"
             title="Pink Noise"
             videoLink={null}
@@ -66,6 +70,7 @@ const Onboarding = () => {
         <View key="3">
           <Page
             backgroundColor="#339c5e"
+            // pageNumber={pageNumber}
             color="Sienna"
             title="Brown Noise"
             videoLink={null}
@@ -87,9 +92,10 @@ const Onboarding = () => {
         <View key="4">
           <Page
             backgroundColor="#07689f"
+            // pageNumber={pageNumber}
             color="white"
             title="Feel the noise"
-            videoLink={useHelpVideo}
+            videoLink={howToUseVideo}
             imageLink={null}
             description="Swipe to change sounds. Click to start"
           />
@@ -108,9 +114,10 @@ const Onboarding = () => {
         <View key="5">
           <Page
             backgroundColor="#07689f"
+            // pageNumber={pageNumber}
             color="white"
             title="Use the Timer"
-            videoLink={getResultsVideo}
+            videoLink={howToTimerVideo}
             imageLink={null}
             description="Hit the clock icon to set a timer for sleep"
           />
@@ -118,7 +125,7 @@ const Onboarding = () => {
             backgroundColor="#339c5e"
             leftButtonLabel="Back"
             leftButtonPress={() => {
-              handlePageChange(2)
+              handlePageChange(3)
             }}
             rightButtonLabel="Continue"
             rightButtonPress={() => {
