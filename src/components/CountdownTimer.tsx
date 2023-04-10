@@ -20,7 +20,6 @@ export default function CountdownTimer({
   setTimerVisible,
   timerControlsFontColor,
 }: CountdownTimerProps) {
-  console.log('timerControlsFontColor:' + timerControlsFontColor)
   const countDownInSecondsLocal = hours * 60 * 60 + minutes * 60 + seconds
 
   const formatRemainingTime = (countDownInSeconds: number) => {
@@ -85,7 +84,6 @@ export default function CountdownTimer({
         0,
       ]}
       onComplete={() => {
-        console.log('ON_COMPLETE BEFORE RETURN')
         togglePlayback()
         setTimerVisible(false)
         return [true, 0]

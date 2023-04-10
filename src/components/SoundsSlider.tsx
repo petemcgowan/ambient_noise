@@ -16,51 +16,39 @@ import CountdownTimer from './CountdownTimer'
 import TimerControls from './TimerControls'
 
 interface SoundsSliderProps {
-  playing: boolean
-  setPlaying: (played: boolean) => void
   timerVisible: boolean
   setTimerVisible: (timerVisible: boolean) => void
 }
 
 export default function SoundsSlider({
-  playing,
-  setPlaying,
   timerVisible,
   setTimerVisible,
 }: SoundsSliderProps) {
-  console.log('SoundsSlider: start')
   const scrollX = useRef(new Animated.Value(0)).current
   const [songIndex, setSongIndex] = useState(0)
   const soundsSliderRef = useRef(null)
   const [hours, setHours] = useState(0)
   const [minutes, setMinutes] = useState(0)
   const [seconds, setSeconds] = useState(0)
+  const [playing, setPlaying] = useState(false)
+  const [intentionalVideoPlay, setIntentionalVideoPlay] = useState(true)
 
   sounds[songIndex].playingSound.setVolume(0.9)
   sounds[songIndex].playingSound.setNumberOfLoops(-1)
-  console.log('Setting playing Sound volume:songIndex:' + songIndex)
 
   useEffect(() => {
-    console.log('SoundsSlider useEffect called')
-
     scrollX.addListener(({ value }) => {
       const index = Math.round(value / width)
       if (index === sounds.length) {
         // end of slides
-        console.log('index is now equal to FOUR')
 
         // scroll back to the top
         soundsSliderRef.current.scrollToOffset({
           offset: 0,
           animated: true,
         })
-        // setSongIndex(0);
       } else {
         if (index !== songIndex) {
-          console.log(
-            'songIndex:' + songIndex + ' no longer equals index:' + index
-          )
-
           if (sounds[songIndex].playingSound._playing) {
             // if previous sound if playing, stop it
             sounds[songIndex].playingSound.stop()
@@ -68,25 +56,15 @@ export default function SoundsSlider({
             sounds[index].playingSound.play()
           }
 
-          console.log(
-            'SCROLLX:Setting song index on swipe():' +
-              index +
-              ', songIndex was:' +
-              songIndex
-          )
           setSongIndex(index)
         }
       }
     })
 
     return () => {
-      console.log('releasing sounds / listeners in useEffect')
-      // TODO Do I really need this or does just pausing work?
-      // sounds[songIndex].playingSound.release();
-      // playingSound.release();
       scrollX.removeAllListeners()
     }
-  }, [scrollX /*playingSound*/, songIndex, playing])
+  }, [scrollX, songIndex, playing])
 
   const dynamicStyles = StyleSheet.create({
     container: {
@@ -106,22 +84,11 @@ export default function SoundsSlider({
 
   const togglePlayback = () => {
     if (sounds[songIndex].playingSound._playing) {
-      console.log('songIndex:' + songIndex + ' is playing')
-    } else {
-      console.log('songIndex:' + songIndex + ' is NOT playing')
-    }
-
-    if (sounds[songIndex].playingSound._playing) {
       sounds[songIndex].playingSound.stop()
       setPlaying(false)
       setTimerVisible(false)
-      // TODO This isn't synchronized
-      // knockOffSound.play();
-      console.log('stop called')
     } else {
-      // knockOnSound.play();
       setPlaying(true)
-      console.log('play called for songIndex:' + songIndex)
       sounds[songIndex].playingSound.play((success) => {
         if (success) {
           console.log('successfully finished playing')
@@ -130,14 +97,6 @@ export default function SoundsSlider({
         }
       })
     }
-  }
-
-  const onVideoError = () => {
-    console.log('onVideoError has been called')
-  }
-
-  const onVideoLoaded = () => {
-    console.log('onVideoLoaded has been called')
   }
 
   const renderSounds = () => {
@@ -154,15 +113,12 @@ export default function SoundsSlider({
             // poster={sounds[songIndex].videoPoster}
             posterResizeMode={'cover'}
             style={dynamicStyles.backgroundVideo}
-            onError={onVideoError}
             muted={true}
             repeat={true}
             buffered={true}
-            onLoad={onVideoLoaded}
-            paused={!playing}
+            paused={!playing || !intentionalVideoPlay}
             resizeMode={'cover'}
             rate={0.5}
-            // ignoreSilentSwitch={'obey'}
           />
 
           <View style={styles.powerControls}>
@@ -170,30 +126,16 @@ export default function SoundsSlider({
               style={styles.powerIcon}
               onPress={() => togglePlayback()}
             >
-              {/* <View> */}
-              {playing ? (
-                <Ionicons
-                  name={'power'}
-                  size={250}
-                  style={styles.powerIcon}
-                  color={
-                    playing
-                      ? 'rgba(0, 255, 0, 0.75)'
-                      : 'rgba(255, 211, 105, 0.75)'
-                  }
-                />
-              ) : (
-                <Ionicons
-                  name={'power'}
-                  size={250}
-                  style={styles.powerIcon}
-                  color={
-                    playing
-                      ? 'rgba(0, 255, 0, 0.75)'
-                      : 'rgba(255, 211, 105, 0.75)'
-                  }
-                />
-              )}
+              <Ionicons
+                name={'power'}
+                size={250}
+                style={styles.powerIcon}
+                color={
+                  playing
+                    ? 'rgba(0, 255, 0, 0.75)'
+                    : 'rgba(255, 211, 105, 0.75)'
+                }
+              />
             </TouchableOpacity>
           </View>
 
@@ -227,6 +169,8 @@ export default function SoundsSlider({
             setSeconds={setSeconds}
             playing={playing}
             togglePlayback={togglePlayback}
+            intentionalVideoPlay={intentionalVideoPlay}
+            setIntentionalVideoPlay={setIntentionalVideoPlay}
             timerDialogBackgroundColor={
               sounds[songIndex].timerDialogBackgroundColor
             }
