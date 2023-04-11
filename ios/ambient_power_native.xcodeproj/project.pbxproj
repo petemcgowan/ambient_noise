@@ -10,9 +10,8 @@
 		00E356F31AD99517003FC87E /* ambient_power_native_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ambient_power_native_Tests.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1A3246CEF18A48FD969CFF40 /* Effra Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C48B67C9C8364CC3A08F7F11 /* Effra Bold.ttf */; };
 		2C0285F52922930B0041AD7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C0285F32922930B0041AD7C /* LaunchScreen.storyboard */; };
-		2C59260B2921A5DE00DADFD0 /* on2sample.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C5926092921A5DE00DADFD0 /* on2sample.mp3 */; };
-		2C59260C2921A5DE00DADFD0 /* off2sample.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C59260A2921A5DE00DADFD0 /* off2sample.mp3 */; };
 		2C5926112921A62D00DADFD0 /* pink_brown_900hz_lc_noise_together_mini.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C59260D2921A62D00DADFD0 /* pink_brown_900hz_lc_noise_together_mini.mp3 */; };
 		2C5926122921A62D00DADFD0 /* noise_brown_v3_131_600_tighter_slopes_mini.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C59260E2921A62D00DADFD0 /* noise_brown_v3_131_600_tighter_slopes_mini.mp3 */; };
 		2C5926132921A62D00DADFD0 /* brown_900hz_lc_noise_mini.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C59260F2921A62D00DADFD0 /* brown_900hz_lc_noise_mini.mp3 */; };
@@ -20,6 +19,7 @@
 		2CD9D5E5292299730074C5DF /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9D5E3292299730074C5DF /* AppDelegate.mm */; };
 		31C57939B902C236FDC6C823 /* libPods-ambient_power_native-ambient_power_native_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D514F6BF56A40D5A504A1839 /* libPods-ambient_power_native-ambient_power_native_Tests.a */; };
 		BEDBBF9A510F990CE5F8C0B1 /* libPods-ambient_power_native.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D73172BE78DF90C067C56E15 /* libPods-ambient_power_native.a */; };
+		DB3BC154ED9F49ACAE9AF93D /* Effra_Std_Rg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59A565A1A2A0479297F5A9F3 /* Effra_Std_Rg.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,23 +42,23 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ambient_power_native/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ambient_power_native/main.m; sourceTree = "<group>"; };
 		2C0285F32922930B0041AD7C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ambient_power_native/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		2C5926092921A5DE00DADFD0 /* on2sample.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = on2sample.mp3; path = ../design/audio/on2sample.mp3; sourceTree = "<group>"; };
-		2C59260A2921A5DE00DADFD0 /* off2sample.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = off2sample.mp3; path = ../design/audio/off2sample.mp3; sourceTree = "<group>"; };
-		2C59260D2921A62D00DADFD0 /* pink_brown_900hz_lc_noise_together_mini.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pink_brown_900hz_lc_noise_together_mini.mp3; path = ../android/app/src/main/res/raw/pink_brown_900hz_lc_noise_together_mini.mp3; sourceTree = "<group>"; };
-		2C59260E2921A62D00DADFD0 /* noise_brown_v3_131_600_tighter_slopes_mini.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = noise_brown_v3_131_600_tighter_slopes_mini.mp3; path = ../android/app/src/main/res/raw/noise_brown_v3_131_600_tighter_slopes_mini.mp3; sourceTree = "<group>"; };
-		2C59260F2921A62D00DADFD0 /* brown_900hz_lc_noise_mini.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = brown_900hz_lc_noise_mini.mp3; path = ../android/app/src/main/res/raw/brown_900hz_lc_noise_mini.mp3; sourceTree = "<group>"; };
-		2C5926102921A62D00DADFD0 /* brown_900hz_lc_noise_mod_mini.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = brown_900hz_lc_noise_mod_mini.mp3; path = ../android/app/src/main/res/raw/brown_900hz_lc_noise_mod_mini.mp3; sourceTree = "<group>"; };
-		2CC60A06291A86A200F6F53E /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ionicons.ttf; sourceTree = "<group>"; };
-		2CC60A07291A877400F6F53E /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
-		2CC60A08291A877A00F6F53E /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Regular.ttf; sourceTree = "<group>"; };
-		2CC60A09291A877F00F6F53E /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Solid.ttf; sourceTree = "<group>"; };
+		2C59260D2921A62D00DADFD0 /* pink_brown_900hz_lc_noise_together_mini.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pink_brown_900hz_lc_noise_together_mini.mp3; sourceTree = "<group>"; };
+		2C59260E2921A62D00DADFD0 /* noise_brown_v3_131_600_tighter_slopes_mini.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = noise_brown_v3_131_600_tighter_slopes_mini.mp3; sourceTree = "<group>"; };
+		2C59260F2921A62D00DADFD0 /* brown_900hz_lc_noise_mini.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = brown_900hz_lc_noise_mini.mp3; sourceTree = "<group>"; };
+		2C5926102921A62D00DADFD0 /* brown_900hz_lc_noise_mod_mini.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = brown_900hz_lc_noise_mod_mini.mp3; sourceTree = "<group>"; };
 		2CD9D5E3292299730074C5DF /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = ambient_power_native/AppDelegate.mm; sourceTree = "<group>"; };
 		2CD9D5E4292299730074C5DF /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ambient_power_native/AppDelegate.h; sourceTree = "<group>"; };
 		2CDB7B7229A931E00039080C /* ambient_power_native.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = ambient_power_native.entitlements; path = ambient_power_native/ambient_power_native.entitlements; sourceTree = "<group>"; };
+		2D005634D30F4AE5A4640659 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = ../assets/fonts/FontAwesome.ttf; sourceTree = "<group>"; };
 		2F52AE241982194CEBEDF09C /* Pods-ambient_power_native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ambient_power_native.release.xcconfig"; path = "Target Support Files/Pods-ambient_power_native/Pods-ambient_power_native.release.xcconfig"; sourceTree = "<group>"; };
+		59A565A1A2A0479297F5A9F3 /* Effra_Std_Rg.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Effra_Std_Rg.ttf; path = ../assets/fonts/Effra_Std_Rg.ttf; sourceTree = "<group>"; };
 		6134346DAF5ECE554D315971 /* Pods-ambient_power_native.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ambient_power_native.debug.xcconfig"; path = "Target Support Files/Pods-ambient_power_native/Pods-ambient_power_native.debug.xcconfig"; sourceTree = "<group>"; };
 		6341C4DB76DB62E4F1DEF9A2 /* Pods-ambient_power_native-ambient_power_native_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ambient_power_native-ambient_power_native_Tests.debug.xcconfig"; path = "Target Support Files/Pods-ambient_power_native-ambient_power_native_Tests/Pods-ambient_power_native-ambient_power_native_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		77B0E08ED05A4A42880A0461 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = ../assets/fonts/FontAwesome5_Regular.ttf; sourceTree = "<group>"; };
+		C0B9EFA19E3D40E686F351DD /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = ../assets/fonts/Ionicons.ttf; sourceTree = "<group>"; };
+		C48B67C9C8364CC3A08F7F11 /* Effra Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Effra Bold.ttf"; path = "../assets/fonts/Effra Bold.ttf"; sourceTree = "<group>"; };
 		D514F6BF56A40D5A504A1839 /* libPods-ambient_power_native-ambient_power_native_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ambient_power_native-ambient_power_native_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5271EF94C5C4260BE324331 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = ../assets/fonts/FontAwesome5_Solid.ttf; sourceTree = "<group>"; };
 		D73172BE78DF90C067C56E15 /* libPods-ambient_power_native.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ambient_power_native.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -103,11 +103,11 @@
 		13B07FAE1A68108700A75B9A /* ambient_power_native */ = {
 			isa = PBXGroup;
 			children = (
+				2C95F00D29DF3CFB00A290B6 /* Sounds */,
 				2CDB7B7229A931E00039080C /* ambient_power_native.entitlements */,
 				2CD9D5E4292299730074C5DF /* AppDelegate.h */,
 				2CD9D5E3292299730074C5DF /* AppDelegate.mm */,
 				2C0285F32922930B0041AD7C /* LaunchScreen.storyboard */,
-				2CC60A05291A867C00F6F53E /* Fonts */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
@@ -115,15 +115,15 @@
 			name = ambient_power_native;
 			sourceTree = "<group>";
 		};
-		2CC60A05291A867C00F6F53E /* Fonts */ = {
+		2C95F00D29DF3CFB00A290B6 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				2CC60A09291A877F00F6F53E /* FontAwesome5_Solid.ttf */,
-				2CC60A08291A877A00F6F53E /* FontAwesome5_Regular.ttf */,
-				2CC60A07291A877400F6F53E /* FontAwesome.ttf */,
-				2CC60A06291A86A200F6F53E /* Ionicons.ttf */,
+				2C59260F2921A62D00DADFD0 /* brown_900hz_lc_noise_mini.mp3 */,
+				2C5926102921A62D00DADFD0 /* brown_900hz_lc_noise_mod_mini.mp3 */,
+				2C59260E2921A62D00DADFD0 /* noise_brown_v3_131_600_tighter_slopes_mini.mp3 */,
+				2C59260D2921A62D00DADFD0 /* pink_brown_900hz_lc_noise_together_mini.mp3 */,
 			);
-			path = Fonts;
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -136,6 +136,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4A647D3E79B14AF8A5AAAFB5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2D005634D30F4AE5A4640659 /* FontAwesome.ttf */,
+				77B0E08ED05A4A42880A0461 /* FontAwesome5_Regular.ttf */,
+				D5271EF94C5C4260BE324331 /* FontAwesome5_Solid.ttf */,
+				C0B9EFA19E3D40E686F351DD /* Ionicons.ttf */,
+				C48B67C9C8364CC3A08F7F11 /* Effra Bold.ttf */,
+				59A565A1A2A0479297F5A9F3 /* Effra_Std_Rg.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,18 +159,13 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				2C59260F2921A62D00DADFD0 /* brown_900hz_lc_noise_mini.mp3 */,
-				2C5926102921A62D00DADFD0 /* brown_900hz_lc_noise_mod_mini.mp3 */,
-				2C59260E2921A62D00DADFD0 /* noise_brown_v3_131_600_tighter_slopes_mini.mp3 */,
-				2C59260D2921A62D00DADFD0 /* pink_brown_900hz_lc_noise_together_mini.mp3 */,
-				2C59260A2921A5DE00DADFD0 /* off2sample.mp3 */,
-				2C5926092921A5DE00DADFD0 /* on2sample.mp3 */,
 				13B07FAE1A68108700A75B9A /* ambient_power_native */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* ambient_power_native_Tests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				4A647D3E79B14AF8A5AAAFB5 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -284,8 +292,8 @@
 				2C5926112921A62D00DADFD0 /* pink_brown_900hz_lc_noise_together_mini.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				2C5926142921A62D00DADFD0 /* brown_900hz_lc_noise_mod_mini.mp3 in Resources */,
-				2C59260B2921A5DE00DADFD0 /* on2sample.mp3 in Resources */,
-				2C59260C2921A5DE00DADFD0 /* off2sample.mp3 in Resources */,
+				1A3246CEF18A48FD969CFF40 /* Effra Bold.ttf in Resources */,
+				DB3BC154ED9F49ACAE9AF93D /* Effra_Std_Rg.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,7 +543,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = P42X2655GH;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ambient_power_native/Info.plist;
@@ -543,6 +551,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -552,7 +561,9 @@
 				PRODUCT_NAME = ambient_power_native;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -570,13 +581,14 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = P42X2655GH;
 				INFOPLIST_FILE = ambient_power_native/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -586,7 +598,9 @@
 				PRODUCT_NAME = ambient_power_native;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
