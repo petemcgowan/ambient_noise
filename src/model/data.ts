@@ -1,11 +1,16 @@
 import Sound from 'react-native-sound'
+import { Image } from 'react-native'
+
+import videoPosterPath1 from '../../assets/images/posters/BigOceanWater.jpg'
+import videoPosterPath2 from '../../assets/images/posters/WindowPlaneView.jpg'
+import videoPosterPath3 from '../../assets/images/posters/HotAirBalloonatNightTurkey.jpg'
+import videoPosterPath4 from '../../assets/images/posters/nightWavesAndSun.jpg'
 
 const sounds = [
   {
     videoBackground: require('../../assets/videos/BigOceanWater.mp4'),
     videoPoster: require('../../assets/images/posters/BigOceanWater.jpg'),
-    videoPosterRemote:
-      'https://ambientnoise.s3.amazonaws.com/videoPosters/BigOceanWater.jpg',
+    videoPosterUri: Image.resolveAssetSource(videoPosterPath1).uri,
     timerDialogBackgroundColor: '#136a53',
     timerDialogFontColor: '#d5e5ea',
     timerControlsFontColor: '#d5e5ea',
@@ -24,8 +29,7 @@ const sounds = [
   {
     videoBackground: require('../../assets/videos/WindowPlaneView.mp4'),
     videoPoster: require('../../assets/images/posters/WindowPlaneView.jpg'),
-    videoPosterRemote:
-      'https://ambientnoise.s3.amazonaws.com/videoPosters/WindowPlaneView.jpg',
+    videoPosterUri: Image.resolveAssetSource(videoPosterPath2).uri,
     timerDialogBackgroundColor: '#4d94ca',
     timerDialogFontColor: '#afb7ad',
     timerControlsFontColor: '#afb7ad',
@@ -44,8 +48,7 @@ const sounds = [
   {
     videoBackground: require('../../assets/videos/HotAirBalloonatNightTurkey.mp4'),
     videoPoster: require('../../assets/images/posters/HotAirBalloonatNightTurkey.jpg'),
-    videoPosterRemote:
-      'https://ambientnoise.s3.amazonaws.com/videoPosters/HotAirBalloonatNightTurkey.jpg',
+    videoPosterUri: Image.resolveAssetSource(videoPosterPath3).uri,
     timerDialogBackgroundColor: '#47819d',
     timerDialogFontColor: '#faaf32',
     timerControlsFontColor: '#faaf32',
@@ -64,8 +67,7 @@ const sounds = [
   {
     videoBackground: require('../../assets/videos/nightWavesAndSun.mp4'),
     videoPoster: require('../../assets/images/posters/nightWavesAndSun.jpg'),
-    videoPosterRemote:
-      'https://ambientnoise.s3.amazonaws.com/videoPosters/nightWavesAndSun.jpg',
+    videoPosterUri: Image.resolveAssetSource(videoPosterPath4).uri,
     timerDialogBackgroundColor: '#2c5056',
     timerDialogFontColor: '#e4af91',
     timerControlsFontColor: '#e4af91',

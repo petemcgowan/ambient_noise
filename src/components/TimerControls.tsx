@@ -12,6 +12,7 @@ import { TimePicker } from 'react-native-simple-time-picker'
 import { Picker, PickerColumn, PickerItem } from 'react-native-picky'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Utils from './Utils'
+import rainSounds from '../model/data'
 
 const { width } = Dimensions.get('window')
 
@@ -40,6 +41,7 @@ interface TimerControlsProps {
   setIntentionalVideoPlay: (intentionalVideoPlay: boolean) => void
   timerDialogBackgroundColor: string
   timerDialogFontColor: string
+  songIndex: number
 }
 
 export default function TimerControls({
@@ -56,6 +58,7 @@ export default function TimerControls({
   setIntentionalVideoPlay,
   timerDialogBackgroundColor,
   timerDialogFontColor,
+  songIndex,
 }: TimerControlsProps) {
   const [modalVisible, setModalVisible] = useState(false)
 
@@ -143,7 +146,6 @@ export default function TimerControls({
                 <Pressable
                   style={[
                     styles.button,
-                    styles.buttonClose,
                     {
                       backgroundColor: timerDialogFontColor,
                     },
@@ -155,7 +157,6 @@ export default function TimerControls({
                 <Pressable
                   style={[
                     styles.button,
-                    styles.buttonClose,
                     {
                       backgroundColor: timerDialogFontColor,
                     },
@@ -180,6 +181,16 @@ export default function TimerControls({
         </Modal>
       </SafeAreaView>
       <View style={styles.bottomContainer}>
+        <View style={styles.pagination}>
+          {rainSounds.map((_, index) => (
+            <Text
+              key={index}
+              style={index === songIndex ? styles.activeDot : styles.dot}
+            >
+              •
+            </Text>
+          ))}
+        </View>
         <View style={styles.bottomControls}>
           <View style={{ width: width * 0.1 }}></View>
           <View
@@ -205,7 +216,9 @@ export default function TimerControls({
                 name="videocam-outline"
                 size={90}
                 color={
-                  intentionalVideoPlay ? 'rgba(0, 255, 0, 0.75)' : '#777777'
+                  intentionalVideoPlay
+                    ? 'rgba(134, 168, 115, 0.75)'
+                    : 'rgba(119, 119, 119, 0.75)'
                 }
               />
             </TouchableOpacity>
@@ -223,12 +236,26 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     width: width,
     alignItems: 'center',
-    paddingVertical: 15,
+    // paddingVertical: 15,
   },
   bottomControls: {
     flexDirection: 'row',
     justifyContent: 'center',
     width: '80%',
+  },
+  dot: {
+    fontSize: 35,
+    color: '#888',
+    margin: 3,
+  },
+  activeDot: {
+    fontSize: 35,
+    color: '#FFF',
+  },
+  pagination: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   button: {
     width: '50%',
@@ -236,7 +263,6 @@ const styles = StyleSheet.create({
     padding: 10,
     elevation: 2,
   },
-  buttonClose: {},
   modalView: {
     marginTop: 80,
     borderRadius: 20,
