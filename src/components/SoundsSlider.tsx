@@ -32,7 +32,13 @@ export default function SoundsSlider({
   const [hours, setHours] = useState(0)
   const [minutes, setMinutes] = useState(0)
   const [seconds, setSeconds] = useState(0)
-  const [playing, setPlaying] = useState(false)
+  // const [playing, setPlaying] = useState(false)
+  const [soundsPlaying, setSoundsPlaying] = useState([
+    { playing: false },
+    { playing: false },
+    { playing: false },
+    { playing: false },
+  ])
   const [intentionalVideoPlay, setIntentionalVideoPlay] = useState(true)
 
   sounds[songIndex].playingSound.setVolume(0.9)
@@ -54,18 +60,21 @@ export default function SoundsSlider({
         // end of slides
         console.log('END OF SLIDES', songIndex)
         // scroll back to the top
-        // soundsSliderRef.current.scrollToOffset({
-        //   offset: 0,
-        //   animated: true,
-        // })
       } else {
         if (index !== songIndex) {
           if (Platform.OS === 'android') {
             NativeModules.ExoPlayerModule.switchTrack(index)
+            // the prev song was playing
+            if (soundsPlaying[songIndex].playing) {
+              updatePlayingStatus(false, songIndex) // set prev song to not play
+              updatePlayingStatus(true, index) // set new song to play
+            }
           }
 
           if (Platform.OS === 'ios') {
             if (sounds[songIndex].playingSound._playing) {
+              updatePlayingStatus(false, songIndex)
+              updatePlayingStatus(true, index)
               // if previous sound if playing, stop it
               sounds[songIndex].playingSound.stop()
               // play the newly selected sound
@@ -81,17 +90,25 @@ export default function SoundsSlider({
     return () => {
       scrollX.removeAllListeners()
     }
-  }, [scrollX, songIndex, playing])
+  }, [scrollX, songIndex, soundsPlaying[songIndex].playing])
+
+  const updatePlayingStatus = (playingStatus: boolean, index: number) => {
+    const updatedSoundsPlaying = [...soundsPlaying]
+    updatedSoundsPlaying[index].playing = playingStatus
+    setSoundsPlaying(updatedSoundsPlaying)
+  }
 
   const togglePlayback = () => {
     if (Platform.OS === 'android') {
       NativeModules.ExoPlayerModule.isTrackPlaying((isPlaying: boolean) => {
         if (isPlaying) {
           NativeModules.ExoPlayerModule.pauseTrack()
-          setPlaying(false)
+          // setPlaying(false)
+          updatePlayingStatus(false, songIndex)
           if (timerVisible) setTimerVisible(false)
         } else {
-          setPlaying(true)
+          // setPlaying(true)
+          updatePlayingStatus(true, songIndex)
           NativeModules.ExoPlayerModule.playTrack()
         }
       })
@@ -100,10 +117,10 @@ export default function SoundsSlider({
     if (Platform.OS === 'ios') {
       if (sounds[songIndex].playingSound._playing) {
         sounds[songIndex].playingSound.stop()
-        setPlaying(false)
+        updatePlayingStatus(false, songIndex)
         if (timerVisible) setTimerVisible(false)
       } else {
-        setPlaying(true)
+        updatePlayingStatus(true, songIndex)
         sounds[songIndex].playingSound.play((success) => {
           if (success) {
             console.log('successfully finished playing')
@@ -122,7 +139,7 @@ export default function SoundsSlider({
         pagingEnabled
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-          { useNativeDriver: true } // Set to false, adjust according to your needs
+          { useNativeDriver: true }
         )}
         scrollEventThrottle={16}
         showsHorizontalScrollIndicator={false}
@@ -139,7 +156,8 @@ export default function SoundsSlider({
                 rate={0.6}
                 repeat={true}
                 // buffered={true}
-                paused={!playing || !intentionalVideoPlay}
+                // paused={!playing || !intentionalVideoPlay}
+                paused={!soundsPlaying[index].playing || !intentionalVideoPlay}
                 resizeMode="cover"
               />
             )}
@@ -153,14 +171,15 @@ export default function SoundsSlider({
                 volume={0.5}
                 rate={0.6}
                 repeat={true}
-                // buffered={true}
-                paused={!playing || !intentionalVideoPlay}
+                // paused={!playing || !intentionalVideoPlay}
+                paused={!soundsPlaying[index].playing || !intentionalVideoPlay}
                 resizeMode="cover"
               />
             )}
           </View>
         ))}
       </Animated.ScrollView>
+
       <View style={styles.powerControls}>
         <TouchableOpacity
           style={styles.powerIcon}
@@ -171,7 +190,9 @@ export default function SoundsSlider({
             size={250}
             style={styles.powerIcon}
             color={
-              playing ? 'rgba(11, 57, 84, 1)' : 'rgba(191, 215, 234, 0.75)'
+              soundsPlaying[songIndex].playing
+                ? 'rgba(11, 57, 84, 1)'
+                : 'rgba(191, 215, 234, 0.75)'
             }
           />
         </TouchableOpacity>
@@ -202,7 +223,8 @@ export default function SoundsSlider({
           setMinutes={setMinutes}
           seconds={seconds}
           setSeconds={setSeconds}
-          playing={playing}
+          // playing={playing}
+          playing={soundsPlaying[songIndex].playing}
           togglePlayback={togglePlayback}
           intentionalVideoPlay={intentionalVideoPlay}
           setIntentionalVideoPlay={setIntentionalVideoPlay}
@@ -224,26 +246,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  timerCountdown: {
-    flexBasis: '20%',
-    marginBottom: 15,
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    left: 0,
-    bottom: '20%', // Adjusted according to the actual size of timerControls
-    right: 0,
-  },
-  timerControls: {
-    flexBasis: '18%',
-    marginBottom: 15,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    position: 'absolute',
-    left: 0,
-    bottom: 0,
-    right: 0,
-  },
   scrollView: {
     height: height * 0.7,
     flexDirection: 'row',
@@ -254,6 +256,35 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     alignItems: 'stretch',
+    bottom: 0,
+    right: 0,
+  },
+  videoContainer: {
+    // width: width - 1,
+    width: width,
+    height: height,
+  },
+  video: {
+    width: '100%',
+    height: '100%',
+  },
+  timerCountdown: {
+    flexBasis: '20%',
+    marginBottom: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    left: 0,
+    bottom: '20%',
+    right: 0,
+  },
+  timerControls: {
+    flexBasis: '18%',
+    marginBottom: 15,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    position: 'absolute',
+    left: 0,
     bottom: 0,
     right: 0,
   },
@@ -274,14 +305,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 1.34,
     elevation: 3,
-  },
-  videoContainer: {
-    width: width - 1,
-    height: height,
-  },
-  video: {
-    width: '100%',
-    height: '100%',
   },
   powerIcon: {
     opacity: 0.85,
