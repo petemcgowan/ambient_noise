@@ -25,6 +25,7 @@ const sounds = [
       }
     ),
     id: '1',
+    playing: false,
   },
   {
     videoBackground: require('../../assets/videos/WindowPlaneView.mp4'),
@@ -44,6 +45,7 @@ const sounds = [
       }
     ),
     id: '2',
+    playing: false,
   },
   {
     videoBackground: require('../../assets/videos/HotAirBalloonatNightTurkey.mp4'),
@@ -63,6 +65,7 @@ const sounds = [
       }
     ),
     id: '3',
+    playing: false,
   },
   {
     videoBackground: require('../../assets/videos/nightWavesAndSun.mp4'),
@@ -82,6 +85,7 @@ const sounds = [
       }
     ),
     id: '4',
+    playing: false,
   },
 ]
 

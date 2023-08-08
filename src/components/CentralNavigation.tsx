@@ -1,17 +1,16 @@
-import { NavigationContainer } from '@react-navigation/native'
-// import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { createStackNavigator } from '@react-navigation/stack'
 import * as React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
 import { useSelector } from 'react-redux'
 
 import { State } from '../redux/index'
 import AmbientPlayer from '../screens/AmbientPlayer'
-import Onboarding from '../screens/onboarding/Onboarding'
-
+import OnboardingDeck from '../screens/onboarding/OnboardingDeck'
 const AppStack = createStackNavigator()
 
 export default function CentralNavigation() {
   const hasSeenIntro = useSelector((state: State) => state.hasSeenIntro)
+  // const hasSeenIntro = false
 
   return (
     <NavigationContainer>
@@ -20,17 +19,14 @@ export default function CentralNavigation() {
           headerShown: false,
         }}
       >
-        {!hasSeenIntro && (
+        {/* {!hasSeenIntro && (
           <AppStack.Screen name="Onboarding" component={Onboarding} />
+        )} */}
+        {!hasSeenIntro && (
+          <AppStack.Screen name="OnboardingDeck" component={OnboardingDeck} />
         )}
         <AppStack.Screen name="AmbientPlayer" component={AmbientPlayer} />
       </AppStack.Navigator>
     </NavigationContainer>
   )
 }
-
-// {!hasSeenIntro && (
-//   <AppStack.Screen name="Onboarding" component={Onboarding} />
-// )}
-
-// <AppStack.Screen name="Onboarding" component={Onboarding} />

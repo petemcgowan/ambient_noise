@@ -3,7 +3,7 @@ import ViewPager from '@react-native-community/viewpager'
 import { useNavigation } from '@react-navigation/native'
 import { View } from 'react-native'
 
-import Footer from '../../components/onboarding/Footer'
+import Footer from '../components/Footer'
 import Page from '../../components/onboarding/Page'
 
 // const selectUnitsVideo = require('../../../assets/videos/onboarding/1_SelectUnits.mp4');
