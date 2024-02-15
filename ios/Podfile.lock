@@ -284,6 +284,8 @@ PODS:
   - React-jsinspector (0.69.0)
   - React-logger (0.69.0):
     - glog
+  - react-native-pager-view (6.2.3):
+    - React-Core
   - react-native-picky (0.4.0):
     - React-Core
   - react-native-safe-area-context (4.4.1):
@@ -298,8 +300,6 @@ PODS:
     - React-Core
     - react-native-video/Video (= 5.2.1)
   - react-native-video/Video (5.2.1):
-    - React-Core
-  - react-native-viewpager (5.0.11):
     - React-Core
   - React-perflogger (0.69.0)
   - React-RCTActionSheet (0.69.0):
@@ -367,11 +367,11 @@ PODS:
     - React-jsi (= 0.69.0)
     - React-logger (= 0.69.0)
     - React-perflogger (= 0.69.0)
-  - RNCAsyncStorage (1.17.11):
+  - RNCAsyncStorage (1.17.12):
     - React-Core
-  - RNCPicker (2.4.8):
+  - RNCPicker (2.6.1):
     - React-Core
-  - RNGestureHandler (2.5.0):
+  - RNGestureHandler (2.14.0):
     - React-Core
   - RNReanimated (2.9.1):
     - DoubleConversion
@@ -400,6 +400,9 @@ PODS:
     - React-RCTText
     - ReactCommon/turbomodule/core
     - Yoga
+  - RNScreens (3.27.0):
+    - React-Core
+    - React-RCTImage
   - RNSound (0.11.2):
     - React-Core
     - RNSound/Core (= 0.11.2)
@@ -458,11 +461,11 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
+  - react-native-pager-view (from `../node_modules/react-native-pager-view`)
   - react-native-picky (from `../node_modules/react-native-picky`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
   - react-native-video (from `../node_modules/react-native-video`)
-  - "react-native-viewpager (from `../node_modules/@react-native-community/viewpager`)"
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -479,6 +482,7 @@ DEPENDENCIES:
   - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
+  - RNScreens (from `../node_modules/react-native-screens`)
   - RNSound (from `../node_modules/react-native-sound`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
@@ -541,6 +545,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   React-logger:
     :path: "../node_modules/react-native/ReactCommon/logger"
+  react-native-pager-view:
+    :path: "../node_modules/react-native-pager-view"
   react-native-picky:
     :path: "../node_modules/react-native-picky"
   react-native-safe-area-context:
@@ -549,8 +555,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-splash-screen"
   react-native-video:
     :path: "../node_modules/react-native-video"
-  react-native-viewpager:
-    :path: "../node_modules/@react-native-community/viewpager"
   React-perflogger:
     :path: "../node_modules/react-native/ReactCommon/reactperflogger"
   React-RCTActionSheet:
@@ -583,6 +587,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-gesture-handler"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
+  RNScreens:
+    :path: "../node_modules/react-native-screens"
   RNSound:
     :path: "../node_modules/react-native-sound"
   RNSVG:
@@ -625,11 +631,11 @@ SPEC CHECKSUMS:
   React-jsiexecutor: b2a049b9f156342f6037ccb0c8acf69f923d3089
   React-jsinspector: 6aced68014b275b7abd073c9598b0affd0e1669c
   React-logger: bcf33ce10afa135158c72635e621ddb94126c610
-  react-native-picky: 55cfde3b434e9830894b468d202b674ad30937df
-  react-native-safe-area-context: ec0d85aca8110dae9327430a9541fec165352dab
+  react-native-pager-view: c29d484f19c49ff19525a94105e4ab2c4d4ae273
+  react-native-picky: 534ec27b70a3bda7983cf34cfbfdb51ce1237a3a
+  react-native-safe-area-context: 99b24a0c5acd0d5dcac2b1a7f18c49ea317be99a
   react-native-splash-screen: 4312f786b13a81b5169ef346d76d33bc0c6dc457
-  react-native-video: 79a186e378d327b6c08bc3982c17ef455c6bd75c
-  react-native-viewpager: d054b58bf3d377e6b99558da6766463ff7e9b220
+  react-native-video: c26780b224543c62d5e1b2a7244a5cd1b50e8253
   React-perflogger: aa48956d87bae67fc847acc196fae97928b96cd3
   React-RCTActionSheet: 4eaab2b885130ce9a88c8fdac5f1992315da80f6
   React-RCTAnimation: 5e91e3ceb988838fa43615bb602181be30d2b26e
@@ -642,17 +648,18 @@ SPEC CHECKSUMS:
   React-RCTVibration: 7549ef7b07aad1cc629f4c6d88c325366f26423c
   React-runtimeexecutor: 7ad268dee53d001697e13264c6bc8e95a902352e
   ReactCommon: 74a3b8ee497c6d50ce86ef57e15c4c5bf654b83d
-  RNCAsyncStorage: 889cea2408e52fe71da475306dcef43951577da0
-  RNCPicker: 0bf8ef8f7800524f32d2bb2a8bcadd53eda0ecd1
-  RNGestureHandler: bad495418bcbd3ab47017a38d93d290ebd406f50
+  RNCAsyncStorage: 09fc8595e6d6f6d5abf16b23a56b257d9c6b7c5b
+  RNCPicker: b18aaf30df596e9b1738e7c1f9ee55402a229dca
+  RNGestureHandler: 4279931048471f17faf46d912b2e96e10f1da99b
   RNReanimated: 2cf7451318bb9cc430abeec8d67693f9cf4e039c
-  RNSound: 1081cf2576b404ca804daf4934bb644cb506ff98
+  RNScreens: 2b19e2471db8a581c83f381f4ea5d43071c9a3bf
+  RNSound: 6c156f925295bdc83e8e422e7d8b38d33bc71852
   RNSVG: 302bfc9905bd8122f08966dc2ce2d07b7b52b9f8
   RNVectorIcons: fcc2f6cb32f5735b586e66d14103a74ce6ad61f8
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   Yoga: 4935173923cabaa830e195be3e8e4cac045a8f90
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 10392fc12c13bcc85b5a57351344d0742160255a
+PODFILE CHECKSUM: 37384f869f5ab4c95f0afb73658c2238ae73cb8e
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.15.2
