@@ -15,11 +15,11 @@ import BottomSheet from 'reanimated-bottom-sheet'
 import { State } from '../redux/index'
 import { useSelector } from 'react-redux'
 
-const launchScreenImage = require('../../../assets/images/onboarding/launch_screen.png')
-const pinkNoiseImage = require('../../../assets/images/onboarding/PinkNoiseSquare.png')
-const brownNoiseImage = require('../../../assets/images/onboarding/BrownSquarev2.jpg')
-const howToUseVideo = require('../../../assets/videos/onboarding/OceanIntroVideo_Use.mp4')
-const howToTimerVideo = require('../../../assets/videos/onboarding/FireIntroVideo_Timer.mp4')
+const launchScreenImage = require('../../assets/images/onboarding/launch_screen.png')
+const pinkNoiseImage = require('../../assets/images/onboarding/PinkNoiseSquare.png')
+const brownNoiseImage = require('../../assets/images/onboarding/BrownSquarev2.jpg')
+const howToUseVideo = require('../../assets/videos/onboarding/OceanIntroVideo_Use.mp4')
+const howToTimerVideo = require('../../assets/videos/onboarding/FireIntroVideo_Timer.mp4')
 
 const { width, height } = Dimensions.get('window')
 
@@ -77,7 +77,7 @@ const OnboardingDeck = () => {
   const [activeSlide, setActiveSlide] = useState(0)
   const navigation = useNavigation()
   const [backgroundColor, setBackgroundColor] = useState('#000')
-  const useSelector((state: State) => state.hasSeenIntro)
+  const hasSeenIntro = useSelector((state: State) => state.hasSeenIntro)
   // const hasSeenIntro = false
   const onScroll = (event: any) => {
     const slide = Math.ceil(

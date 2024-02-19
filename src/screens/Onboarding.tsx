@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import ViewPager from '@react-native-community/viewpager'
+import ViewPager from 'react-native-pager-view'
 import { useNavigation } from '@react-navigation/native'
 import { View } from 'react-native'
 
