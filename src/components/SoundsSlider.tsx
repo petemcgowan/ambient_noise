@@ -188,6 +188,7 @@ export default function SoundsSlider({
           <Ionicons
             name={'power'}
             size={250}
+            test-id={'ionicons-button'}
             style={styles.powerIcon}
             color={
               soundsPlaying[songIndex].playing

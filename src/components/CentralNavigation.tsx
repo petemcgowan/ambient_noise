@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 
 import { State } from '../redux/index'
 import AmbientPlayer from '../screens/AmbientPlayer'
-import OnboardingDeck from '../screens/onboarding/OnboardingDeck'
+import OnboardingDeck from '../screens/OnboardingDeck'
 const AppStack = createStackNavigator()
 
 export default function CentralNavigation() {
