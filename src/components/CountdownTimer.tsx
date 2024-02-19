@@ -21,6 +21,7 @@ export default function CountdownTimer({
   timerControlsFontColor,
 }: CountdownTimerProps) {
   const countDownInSecondsLocal = hours * 60 * 60 + minutes * 60 + seconds
+  const initialRemainingTime = countDownInSecondsLocal - 1
 
   const formatRemainingTime = (countDownInSeconds: number) => {
     if (countDownInSecondsLocal === countDownInSeconds) {
@@ -47,7 +48,6 @@ export default function CountdownTimer({
     } else {
       minuteString = String(minutesMethod2)
     }
-
     // return `${minutes}:${seconds}`;
     return `${hoursMethod2}:${minuteString}:${secondString}`
   }
@@ -56,6 +56,7 @@ export default function CountdownTimer({
     <CountdownCircleTimer
       isPlaying
       duration={countDownInSecondsLocal}
+      initialRemainingTime={initialRemainingTime}
       size={165}
       updateInterval={0.1}
       strokeWidth={9}
@@ -89,13 +90,15 @@ export default function CountdownTimer({
         return [true, 0]
       }}
     >
-      {({ remainingTime, animatedColor }) => (
-        <Animated.Text style={{ color: animatedColor }}>
-          <Text style={[styles.text, { color: timerControlsFontColor }]}>
-            {formatRemainingTime(remainingTime)}
-          </Text>
-        </Animated.Text>
-      )}
+      {({ remainingTime, animatedColor }) => {
+        return (
+          <Animated.Text style={{ color: animatedColor }}>
+            <Text style={[styles.text, { color: timerControlsFontColor }]}>
+              {formatRemainingTime(remainingTime)}
+            </Text>
+          </Animated.Text>
+        )
+      }}
     </CountdownCircleTimer>
   )
 }

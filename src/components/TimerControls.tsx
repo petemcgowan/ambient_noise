@@ -63,13 +63,24 @@ export default function TimerControls({
   const [modalVisible, setModalVisible] = useState(false)
 
   const handleChange = (value: {
-    hours: number
-    minutes: number
-    seconds: number
+    hours: number | string
+    minutes: number | string
+    seconds: number | string
   }) => {
-    setHours(value.hours)
-    setMinutes(value.minutes)
-    setSeconds(value.seconds)
+    // TimePicker changes the type depending on whether it was last used or not 😳
+    setHours(
+      typeof value.hours === 'string' ? parseInt(value.hours, 10) : value.hours
+    )
+    setMinutes(
+      typeof value.minutes === 'string'
+        ? parseInt(value.minutes, 10)
+        : value.minutes
+    )
+    setSeconds(
+      typeof value.seconds === 'string'
+        ? parseInt(value.seconds, 10)
+        : value.seconds
+    )
   }
 
   return (
