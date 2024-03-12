@@ -162,9 +162,8 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 0.72,
-    paddingTop: 20,
+    paddingTop: height * 0.02,
     // flex: 0.82,
-    // paddingTop: 20,
   },
   bottomContainer: {
     flex: 0.08,
@@ -175,8 +174,8 @@ const styles = StyleSheet.create({
     width: width * 0.6,
     height: height * 0.06,
     backgroundColor: 'rgb(76, 175, 80)',
-    paddingHorizontal: 10,
-    marginBottom: 15,
+    paddingHorizontal: width * 0.05,
+    marginBottom: width * 0.05,
     borderRadius: 30,
     elevation: 5, // for Android
     shadowOffset: {
@@ -194,17 +193,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 15,
+    marginBottom: height * 0.02,
   },
   dot: {
     fontSize: RFPercentage(6.8),
     color: '#888',
-    marginHorizontal: 5,
+    marginHorizontal: width * 0.02,
   },
   activeDot: {
     fontSize: RFPercentage(6.8),
     color: '#FFF',
-    marginHorizontal: 5,
+    marginHorizontal: width * 0.02,
   },
   buttonText: {
     color: '#FFF',
