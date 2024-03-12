@@ -1,7 +1,9 @@
 import React from 'react'
-import { Text, StyleSheet } from 'react-native'
+import { Text, StyleSheet, Dimensions } from 'react-native'
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
 import { Animated } from 'react-native'
+import { RFPercentage } from 'react-native-responsive-fontsize'
+const { width } = Dimensions.get('window')
 
 interface CountdownTimerProps {
   hours: number
@@ -21,7 +23,7 @@ export default function CountdownTimer({
   timerControlsFontColor,
 }: CountdownTimerProps) {
   const countDownInSecondsLocal = hours * 60 * 60 + minutes * 60 + seconds
-  const initialRemainingTime = countDownInSecondsLocal - 1
+  // const initialRemainingTime = countDownInSecondsLocal - 1
 
   const formatRemainingTime = (countDownInSeconds: number) => {
     if (countDownInSecondsLocal === countDownInSeconds) {
@@ -56,10 +58,10 @@ export default function CountdownTimer({
     <CountdownCircleTimer
       isPlaying
       duration={countDownInSecondsLocal}
-      initialRemainingTime={initialRemainingTime}
-      size={165}
-      updateInterval={0.1}
-      strokeWidth={9}
+      initialRemainingTime={countDownInSecondsLocal - 1}
+      size={width * 0.5}
+      updateInterval={0.3}
+      strokeWidth={width * 0.04}
       colors={[
         '#9CDE9F',
         '#D1F5BE',
@@ -105,13 +107,13 @@ export default function CountdownTimer({
 
 const styles = StyleSheet.create({
   timerTextContainer: {
-    margin: 3,
+    margin: width * 0.01,
   },
   timer: {
     alignItems: 'center',
   },
   text: {
-    fontSize: 31,
+    fontSize: RFPercentage(4.3),
     fontWeight: 'bold',
     alignItems: 'center',
     justifyContent: 'center',

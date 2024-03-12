@@ -13,8 +13,9 @@ import { Picker, PickerColumn, PickerItem } from 'react-native-picky'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Utils from './Utils'
 import rainSounds from '../model/data'
+import { RFPercentage } from 'react-native-responsive-fontsize'
 
-const { width } = Dimensions.get('window')
+const { width, height } = Dimensions.get('window')
 
 const secondOptions = Utils.selectionDropDownRange(0, 59).map(
   (second) => second.value
@@ -114,7 +115,10 @@ export default function TimerControls({
                 />
               )}
               {Platform.OS === 'android' && (
-                <Picker textColor={timerDialogFontColor} textSize={60}>
+                <Picker
+                  textColor={timerDialogFontColor}
+                  textSize={width * 0.09}
+                >
                   <PickerColumn
                     selectedValue={hours}
                     onChange={(event) => setHours(+event.value.toString())}
@@ -255,13 +259,14 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   dot: {
-    fontSize: 35,
+    fontSize: RFPercentage(6.8),
     color: '#888',
-    margin: 3,
+    marginHorizontal: width * 0.02,
   },
   activeDot: {
-    fontSize: 35,
+    fontSize: RFPercentage(6.8),
     color: '#FFF',
+    marginHorizontal: width * 0.02,
   },
   pagination: {
     flexDirection: 'row',
@@ -271,13 +276,13 @@ const styles = StyleSheet.create({
   button: {
     width: '50%',
     borderRadius: 10,
-    padding: 10,
+    padding: width * 0.03,
     elevation: 2,
   },
   modalView: {
-    marginTop: 80,
+    marginTop: height * 0.1,
     borderRadius: 20,
-    padding: 20,
+    padding: width * 0.02,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -295,6 +300,6 @@ const styles = StyleSheet.create({
   textStyle: {
     color: '#777777',
     textAlign: 'center',
-    fontSize: 22,
+    fontSize: RFPercentage(2.85),
   },
 })

@@ -65,7 +65,8 @@ export default SlideComponent
 const styles = StyleSheet.create({
   slideContainer: {
     width: width,
-    paddingTop: 10,
+    // paddingTop: 10,
+    paddingTop: height * 0.01,
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -84,13 +85,13 @@ const styles = StyleSheet.create({
     width: width,
     height: height * 0.5,
     alignSelf: 'center',
-    paddingVertical: 5,
-    paddingHorizontal: 10,
+    paddingVertical: height * 0.02,
+    paddingHorizontal: width * 0.05,
   },
   videoContainer: {
     width: width,
-    height: height * 0.63,
-    paddingVertical: 5,
+    height: height * 0.6,
+    paddingVertical: width * 0.03,
     alignSelf: 'center',
   },
   image: {
@@ -103,22 +104,22 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   textBox: {
-    paddingHorizontal: 20,
+    paddingHorizontal: width * 0.1,
     alignItems: 'center',
   },
   text: {
     color: 'white',
     textAlign: 'center',
-    fontSize: RFPercentage(2.7),
-    maxWidth: width - 40,
+    fontSize: RFPercentage(2.3),
+    maxWidth: width - width * 0.1,
     justifyContent: 'center',
   },
   title: {
     color: 'white',
     textAlign: 'center',
     fontWeight: '600',
-    maxWidth: width - 40,
-    fontSize: RFPercentage(3.4),
+    maxWidth: width - width * 0.05,
+    fontSize: RFPercentage(3.2),
     justifyContent: 'center',
   },
 })
