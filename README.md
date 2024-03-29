@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="styles.css">
 ## Main vs design/release project versions
 
 ... (rest of your README content)
@@ -7,19 +8,13 @@
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   ## How To Use:
 
-  <video src="https://user-images.githubusercontent.com/43282635/235081663-7b0eb525-e9cb-47ff-9193-e087195f4860.mp4" controls></video>
+  <video style="width: 100%; max-width: 640px;" src="https://user-images.githubusercontent.com/43282635/235081663-7b0eb525-e9cb-47ff-9193-e087195f4860.mp4" controls></video>
 
   ## How to use the Timer:
 
-  <video src="https://user-images.githubusercontent.com/43282635/235081719-fd53c90c-8e15-46f7-afb5-5e79378e764f.mp4" controls></video>
+  <video style="width: 100%; max-width: 640px;" src="https://user-images.githubusercontent.com/43282635/235081719-fd53c90c-8e15-46f7-afb5-5e79378e764f.mp4" controls></video>
 </div>
 
-<style>
-video {
-  width: 100%;
-  max-width: 640px;
-}
-</style>
 # Screenshots
 
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
