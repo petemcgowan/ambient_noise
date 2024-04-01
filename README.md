@@ -1,7 +1,37 @@
-<link rel="stylesheet" href="styles.css">
 ## Main vs design/release project versions
 
-... (rest of your README content)
+This is the main code project for Ambient Noise. You can find its design/release project here:
+https://github.com/petemcgowan/ambient_noise_release_design
+
+
+# Ambient Noise
+
+<div align="center">
+
+<img src="/img/06_Logo_Ambient_Noise.png" width="30%">
+
+
+</div>
+
+<div align="center">
+
+<a href="https://apps.apple.com/us/app/alpha-waves-rain-sounds/id6459734452"><img src="/img/app-store-available-on-the.svg" width="30%"></a>
+<a href="[https://play.google.com/store/apps/details?id=com.buachaillmaith.rainnoiseapp]"><img src="/img/Google_Play_2022_logo_Get.png" width="30%"></a>
+
+</div>
+
+Ambient Noise is designed to help you sleep, study or get in the zone. It's basically a "white noise" creation app (which actually uses brown and pink noise). Complimented by a soothing evolving colour background...
+
+
+# Screenshots
+
+<div align="center">
+
+| ![Image 1](/img/projects/AmbientNoiseiPhone0.jpeg) | ![Image 2](/img/projects/AmbientNoiseiPhone1.jpeg) | ![Image 3](/img/projects/AmbientNoiseiPhone2.jpeg) |
+| :---------------------------------------------: | :---------------------------------------------: | :---------------------------------------------: |
+| ![Image 4](/img/projects/AmbientNoiseiPhone3.jpeg) | ![Image 5](/img/projects/AmbientNoiseiPhone4.jpeg) | ![Image 6](/img/projects/AmbientNoiseiPhone5.jpeg) |
+
+</div>
 
 # Videos
 
@@ -15,14 +45,9 @@
   <video style="width: 100%; max-width: 640px;" src="https://user-images.githubusercontent.com/43282635/235081719-fd53c90c-8e15-46f7-afb5-5e79378e764f.mp4" controls></video>
 </div>
 
-# Screenshots
 
-<div style="display: flex; flex-wrap: wrap; justify-content: center;">
-  <img src="https://user-images.githubusercontent.com/43282635/235082302-382fffaf-c041-4acd-8e99-ab49a3fb3375.png" width="49%">
-  <img src="https://user-images.githubusercontent.com/43282635/235082381-2d0c5b52-5035-4351-a262-1c2862ad84ec.png" width="49%">
-  <img src="https://user-images.githubusercontent.com/43282635/235082400-01c8ea20-aa77-4577-ba2e-c62ebdf19406.png" width="49%">
-  <img src="https://user-images.githubusercontent.com/43282635/235082417-71211d89-bd31-4b3b-a69f-ede5f1dfcb12.png" width="49%">
-  <img src="https://user-images.githubusercontent.com/43282635/235082457-4c30dbca-6765-4361-bd1f-a641abf93b7f.png" width="100%">
-</div>
+## Ambient Architecture
 
-... (rest of your README content)
+<img src="docs/images/ambient-power-stack.png" width="30%" />
+
+
