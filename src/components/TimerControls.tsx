@@ -37,7 +37,7 @@ interface TimerControlsProps {
   seconds: number
   setSeconds: (seconds: number) => void
   playing: boolean
-  togglePlayback: () => void
+  togglePlayback: (fromModal: boolean) => void
   intentionalVideoPlay: boolean
   setIntentionalVideoPlay: (intentionalVideoPlay: boolean) => void
   timerDialogBackgroundColor: string
@@ -92,7 +92,7 @@ export default function TimerControls({
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
-            Alert.alert('Modal has been closed.')
+            // Alert.alert('Modal has been closed.')
             setModalVisible(!modalVisible)
           }}
         >
@@ -108,9 +108,6 @@ export default function TimerControls({
                   textColor={timerDialogFontColor}
                   value={{ hours, minutes, seconds }}
                   onChange={handleChange}
-                  // hoursUnit="hr"
-                  // minutesUnit="min"
-                  // secondsUnit="sec"
                   pickerShows={['hours', 'minutes', 'seconds']}
                 />
               )}
@@ -184,7 +181,7 @@ export default function TimerControls({
                     setModalVisible(!modalVisible)
                     setTimerVisible(true)
                     if (!playing) {
-                      togglePlayback()
+                      togglePlayback(true)
                     }
                   }}
                 >
@@ -251,7 +248,6 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     width: width,
     alignItems: 'center',
-    // paddingVertical: 15,
   },
   bottomControls: {
     flexDirection: 'row',

@@ -9,7 +9,7 @@ interface CountdownTimerProps {
   hours: number
   minutes: number
   seconds: number
-  togglePlayback: () => void
+  togglePlayback: (fromModal: boolean) => void
   setTimerVisible: (timerVisible: boolean) => void
   timerControlsFontColor: string
 }
@@ -87,7 +87,7 @@ export default function CountdownTimer({
         0,
       ]}
       onComplete={() => {
-        togglePlayback()
+        togglePlayback(false)
         setTimerVisible(false)
         return [true, 0]
       }}
