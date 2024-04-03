@@ -28,11 +28,9 @@ export default function SoundsSlider({
 }: SoundsSliderProps) {
   const scrollX = useRef(new Animated.Value(0)).current
   const [songIndex, setSongIndex] = useState(0)
-  // const soundsSliderRef = useRef(null)
   const [hours, setHours] = useState(0)
   const [minutes, setMinutes] = useState(0)
   const [seconds, setSeconds] = useState(0)
-  // const [playing, setPlaying] = useState(false)
   const [soundsPlaying, setSoundsPlaying] = useState([
     { playing: false },
     { playing: false },
@@ -98,10 +96,16 @@ export default function SoundsSlider({
     setSoundsPlaying(updatedSoundsPlaying)
   }
 
-  const togglePlayback = () => {
+  const togglePlayback = (fromModal: boolean) => {
     if (Platform.OS === 'android') {
       NativeModules.ExoPlayerModule.isTrackPlaying((isPlaying: boolean) => {
         if (isPlaying) {
+          // reset the timer if not IN the timer
+          if (!fromModal) {
+            if (hours > 0) setHours(0)
+            if (minutes > 0) setMinutes(0)
+            if (seconds > 0) setSeconds(0)
+          }
           NativeModules.ExoPlayerModule.pauseTrack()
           // setPlaying(false)
           updatePlayingStatus(false, songIndex)
@@ -118,6 +122,12 @@ export default function SoundsSlider({
       if (sounds[songIndex].playingSound._playing) {
         sounds[songIndex].playingSound.stop()
         updatePlayingStatus(false, songIndex)
+        // reset the timer if not IN the timer
+        if (!fromModal) {
+          if (hours > 0) setHours(0)
+          if (minutes > 0) setMinutes(0)
+          if (seconds > 0) setSeconds(0)
+        }
         if (timerVisible) setTimerVisible(false)
       } else {
         updatePlayingStatus(true, songIndex)
@@ -183,7 +193,7 @@ export default function SoundsSlider({
       <View style={styles.powerControls}>
         <TouchableOpacity
           style={styles.powerIcon}
-          onPress={() => togglePlayback()}
+          onPress={() => togglePlayback(false)}
         >
           <Ionicons
             name={'power'}
@@ -261,7 +271,6 @@ const styles = StyleSheet.create({
     right: 0,
   },
   videoContainer: {
-    // width: width - 1,
     width: width,
     height: height,
   },

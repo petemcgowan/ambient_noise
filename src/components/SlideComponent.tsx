@@ -72,6 +72,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     // paddingBottom: 20,
   },
+  imageContainer: {
+    width: width,
+    height: height * 0.5,
+    alignSelf: 'center',
+    paddingVertical: height * 0.02,
+    paddingHorizontal: width * 0.05,
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+  },
   textBoxImage: {
     // paddingHorizontal: 20,
     alignItems: 'center',
@@ -81,23 +93,11 @@ const styles = StyleSheet.create({
     // paddingHorizontal: 20,
     alignItems: 'center',
   },
-  imageContainer: {
-    width: width,
-    height: height * 0.5,
-    alignSelf: 'center',
-    paddingVertical: height * 0.02,
-    paddingHorizontal: width * 0.05,
-  },
   videoContainer: {
     width: width,
     height: height * 0.6,
     paddingVertical: width * 0.03,
     alignSelf: 'center',
-  },
-  image: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'cover',
   },
   video: {
     width: '100%',
